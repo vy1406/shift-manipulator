@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Vova",
+        "lastname": "Elisavetski",
+        "isAdmin": true
+    },
+    {
+        "name": "Eitan",
+        "lastname": "Eeloz",
+        "isAdmin": true
+    },
+    {
+        "name": "Dima",
+        "lastname": "Osipov",
+        "isAdmin": false
+    },
+    {
+        "name": "Roman",
+        "lastname": "Shargaev",
+        "isAdmin": false
+    }
+]
