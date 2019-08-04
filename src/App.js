@@ -30,12 +30,12 @@ class App extends Component {
           <Route path="/calendar" exact component={Calendar} />
 
           <div id="main-links">
-            <Link to="/">Home</Link>
+            <Link to="/">Logins </Link>
             <Link to="/about">About</Link>
             <Link to="/menu">menu</Link>
             <Link to="/calendar">calendar</Link>
           </div>
-          
+
         </div>
       </Router>
     );
