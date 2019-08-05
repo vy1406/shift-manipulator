@@ -1,0 +1,198 @@
+[
+    {
+        "name": "Vova",
+        "work_id": "cisco",
+        "available": 4,
+        "options":[
+            {
+                "day" : 0,
+                "morning": false,
+                "evening": true,
+                "night": true
+            },
+            {
+                "day" : 1,
+                "morning": false,
+                "evening": true,
+                "night": true
+            },
+            {
+                "day" : 2,
+                "morning": false,
+                "evening": false,
+                "night": false
+            },
+            {
+                "day" : 3,
+                "morning": false,
+                "evening": true,
+                "night": true
+            },
+            {
+                "day" : 4,
+                "morning": true,
+                "evening": true,
+                "night": true
+            },
+            {
+                "day" : 5,
+                "morning": false,
+                "evening": true,
+                "night": false
+            },
+            {
+                "day" : 6,
+                "morning": false,
+                "evening": false,
+                "night": true
+            }
+        ]
+    },
+    {
+        "name": "Dima",
+        "work_id": "cisco",
+        "available": 6,
+        "options":[
+            {
+                "day" : 0,
+                "morning": true,
+                "evening": true,
+                "night": true
+            },
+            {
+                "day" : 1,
+                "morning": false,
+                "evening": true,
+                "night": true
+            },
+            {
+                "day" : 2,
+                "morning": true,
+                "evening": false,
+                "night": false
+            },
+            {
+                "day" : 3,
+                "morning": false,
+                "evening": true,
+                "night": true
+            },
+            {
+                "day" : 4,
+                "morning": true,
+                "evening": false,
+                "night": true
+            },
+            {
+                "day" : 5,
+                "morning": false,
+                "evening": true,
+                "night": false
+            },
+            {
+                "day" : 6,
+                "morning": true,
+                "evening": false,
+                "night": false
+            }
+        ]
+    },
+    {
+        "name": "Eitan",
+        "work_id": "cisco",
+        "available": 5,
+        "options":[
+            {
+                "day" : 0,
+                "morning": true,
+                "evening": true,
+                "night": false
+            },
+            {
+                "day" : 1,
+                "morning": true,
+                "evening": true,
+                "night": true
+            },
+            {
+                "day" : 2,
+                "morning": true,
+                "evening": false,
+                "night": false
+            },
+            {
+                "day" : 3,
+                "morning": true,
+                "evening": true,
+                "night": false
+            },
+            {
+                "day" : 4,
+                "morning": true,
+                "evening": false,
+                "night": false
+            },
+            {
+                "day" : 5,
+                "morning": true,
+                "evening": false,
+                "night": false
+            },
+            {
+                "day" : 6,
+                "morning": false,
+                "evening": false,
+                "night": false
+            }
+        ]
+    },
+    {
+        "name": "Roman",
+        "work_id": "cisco",
+        "available": 2,
+        "options":[
+            {
+                "day" : 0,
+                "morning": false,
+                "evening": false,
+                "night": false
+            },
+            {
+                "day" : 1,
+                "morning": false,
+                "evening": false,
+                "night": false
+            },
+            {
+                "day" : 2,
+                "morning": false,
+                "evening": false,
+                "night": false
+            },
+            {
+                "day" : 3,
+                "morning": false,
+                "evening": false,
+                "night": false
+            },
+            {
+                "day" : 4,
+                "morning": false,
+                "evening": false,
+                "night": true
+            },
+            {
+                "day" : 5,
+                "morning": true,
+                "evening": true,
+                "night": true
+            },
+            {
+                "day" : 6,
+                "morning": true,
+                "evening": true,
+                "night": false
+            }
+        ]
+    }
+]

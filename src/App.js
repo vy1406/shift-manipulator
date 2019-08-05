@@ -4,7 +4,6 @@ import Login from './components/login/Login'
 import About from './components/about/About'
 import Calendar from './components/calendar/Calendar'
 
-
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { observer } from 'mobx-react'
 
@@ -18,7 +17,6 @@ class App extends Component {
       currentUser: ""
     }
   }
-
 
   render() {
     return (
