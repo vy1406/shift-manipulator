@@ -11,12 +11,6 @@ import './App.css';
 
 @observer
 class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      currentUser: ""
-    }
-  }
 
   render() {
     return (
@@ -32,6 +26,7 @@ class App extends Component {
             <Link to="/about">About</Link>
             <Link to="/menu">menu</Link>
             <Link to="/calendar">calendar</Link>
+            <Link to="/about"><button className="btn">about</button></Link>
           </div>
 
         </div>

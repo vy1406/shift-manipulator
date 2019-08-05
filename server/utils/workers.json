@@ -2,21 +2,29 @@
     {
         "name": "Vova",
         "lastname": "Elisavetski",
+        "email": "yvova88@yahoo.com",
+        "password" : "1234",
         "isAdmin": true
     },
     {
         "name": "Eitan",
         "lastname": "Eeloz",
+        "email": "Eitan@yahoo.com",
+        "password" : "1234",
         "isAdmin": true
     },
     {
         "name": "Dima",
         "lastname": "Osipov",
+        "email": "Dima@yahoo.com",
+        "password" : "1234",
         "isAdmin": false
     },
     {
         "name": "Roman",
         "lastname": "Shargaev",
+        "email": "Roman@yahoo.com",
+        "password" : "1234",
         "isAdmin": false
     }
 ]

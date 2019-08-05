@@ -26,6 +26,8 @@ class dataDao {
         let workerToSave = new Worker({
             name: argWorker.name,
             lastname: argWorker.lastname,
+            password: argWorker.password,
+            email : argWorker.email,
             isAdmin: argWorker.isAdmin
         })
 
