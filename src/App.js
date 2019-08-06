@@ -27,6 +27,7 @@ class App extends Component {
             <Link to="/menu">menu</Link>
             <Link to="/calendar">calendar</Link>
             <Link to="/about"><button className="btn">about</button></Link>
+            {/* <PrivateRoute exact path="/" component={HomePage} /> */}
           </div>
 
         </div>

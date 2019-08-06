@@ -27,7 +27,7 @@ class dataDao {
             name: argWorker.name,
             lastname: argWorker.lastname,
             password: argWorker.password,
-            email : argWorker.email,
+            email: argWorker.email,
             isAdmin: argWorker.isAdmin
         })
 
@@ -44,6 +44,20 @@ class dataDao {
         })
 
         optionsToSave.save()
+    }
+
+    async login(bodyParams) {
+        const { email, password } = bodyParams
+        let worker = await Worker.find({ email })
+        let msg
+        if (worker.length === 0)
+            msg = "Worker with given email doenst exist."
+        else if (worker[0].password !== password)
+            msg = "Wrong password!"
+        else
+            msg = "Welcome"
+
+        return msg
     }
 }
 

@@ -5,20 +5,18 @@ import { observer, inject } from 'mobx-react'
 @observer
 class Login extends Component {
 
-    handleInput = event => { this.props.generalStore.handleInput(event.target.className,event) }
+    handleInput = event => { this.props.generalStore.handleInput(event.target.className, event) }
 
-    login = () => {
-        
-    }
+    login = () => { this.props.generalStore.login() }
 
     render() {
         return (
-             <div>i'm a login.
+            <div>i'm a login.
                  <div>Login</div>
-                 <input className="email" type="text" placeholder="Email" onChange={this.handleInput}/>
-                 <input className="password" type="password" placeholder="Password" onChange={this.handleInput}/>
-                 <button className="login-btn" onClick={this.login}>Login</button>
-             </div>
+                <input className="email" type="text" placeholder="Email" onChange={this.handleInput} />
+                <input className="password" type="password" placeholder="Password" onChange={this.handleInput} />
+                <button className="login-btn" onClick={this.login}>Login</button>
+            </div>
         )
     }
 }

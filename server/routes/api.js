@@ -17,4 +17,10 @@ router.get('/cleardb', function (req, res) {
     res.send("db cleared")
 })
 
+router.post('/login', async function (req, res) {
+    let msg = await dataDao.login(req.body)
+    console.log(msg)
+    // res.send(msg)
+})
+
 module.exports = router
