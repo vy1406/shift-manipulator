@@ -49,15 +49,14 @@ class dataDao {
     async login(bodyParams) {
         const { email, password } = bodyParams
         let worker = await Worker.find({ email })
-        let msg
-        if (worker.length === 0)
-            msg = "Worker with given email doenst exist."
-        else if (worker[0].password !== password)
-            msg = "Wrong password!"
-        else
-            msg = "Welcome"
 
-        return msg
+        if (worker.length === 0)
+            return "Worker with given email doenst exist."
+        else if (worker[0].password !== password)
+            return "Wrong password!"
+        else
+            return worker
+            
     }
 }
 

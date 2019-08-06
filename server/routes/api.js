@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const DataDao = require("../utils/dataDao")
-const dataDao = new DataDao()  
+const dataDao = new DataDao()
 
 router.get('/sanity', function (req, res) {
     res.send("OK!")
@@ -18,9 +18,8 @@ router.get('/cleardb', function (req, res) {
 })
 
 router.post('/login', async function (req, res) {
-    let msg = await dataDao.login(req.body)
-    console.log(msg)
-    // res.send(msg)
+    let worker = await dataDao.login(req.body)
+    res.send(worker)
 })
 
 module.exports = router
