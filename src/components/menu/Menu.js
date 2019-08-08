@@ -1,22 +1,32 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react'
+import Worker from '../worker/Worker';
+import axios from 'axios';
+
 
 @inject("optionsStore")
 @observer
 class Menu extends Component {
 
-    componentWillMount = async () => {
-        let options = await this.props.optionsStore.getLastOptions()
+    constructor() {
+        super()
+        this.state = {
+            workers: []
+        }
+    }
+
+    async componentWillMount() {
+        const result = await axios.get("http://localhost:8080/options")
+        this.setState({
+            workers: result.data
+        })
+        console.log(result.data)
     }
 
     render() {
         return (
             <div className="menu">
-                <div className="list-of-options">
-                    {this.options.map((option, index) =>
-                        <Option></Option>)
-                    }
-                </div>
+                {this.state.workers.map((worker, i) => <Worker key={i + worker.name} worker={worker} />)}
             </div >
         )
     }
