@@ -17,6 +17,11 @@ router.get('/cleardb', function (req, res) {
     res.send("db cleared")
 })
 
+router.get('/options', async function (req, res) {
+    let options = await dataDao.getLastOptions()
+    res.send(options)
+})
+
 router.post('/login', async function (req, res) {
     let worker = await dataDao.login(req.body)
     res.send(worker)

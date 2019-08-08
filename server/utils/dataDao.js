@@ -34,6 +34,15 @@ class dataDao {
         workerToSave.save()
     }
 
+    async getLastOptions() {
+        // ToDo
+        // ---------------------------------
+        // sort by date, return the last one.
+        // ---------------------------------
+        let result = options
+        return result 
+    }
+
     async saveOptionToDB(argOptions) {
 
         let optionsToSave = new Options({

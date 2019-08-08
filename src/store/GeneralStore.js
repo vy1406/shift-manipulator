@@ -8,7 +8,7 @@ export class GeneralStore {
 
     @observable email
     @observable password
-    @observable curUser
+    @observable curUser = ""
     @observable userMSG = ""
 
     @action handleInput = (key, event) => {

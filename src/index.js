@@ -6,9 +6,12 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import { GeneralStore } from './store/GeneralStore'
+import { OptionsStore } from './store/OptionsStore';
 
 const generalStore = new GeneralStore()
-const stores = { generalStore }
+const optionsStore = new OptionsStore()
+
+const stores = { generalStore, optionsStore }
 
 
 ReactDOM.render(
