@@ -1,0 +1,24 @@
+.single-worker{
+    background-color: aqua;
+    border: solid 1px;
+    padding: 5px;
+    margin: 5px;
+    display:grid;
+    grid-template-areas: "name list-options";
+    grid-template-columns: 1fr 10fr;
+}
+
+.workerName{
+    grid-area: "name";
+    padding: 3px;
+    background-color: azure;
+}
+
+
+.list-options{
+    grid-area: "list-options";
+    padding: 3px;
+    background-color:turquoise;
+    display: grid;
+    grid-auto-flow: column;
+}
