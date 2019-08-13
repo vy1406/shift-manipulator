@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import './menu.css';
 
 class Menu extends Component {
@@ -12,7 +13,7 @@ class Menu extends Component {
                     </div>
                 </div>
                 <div className="controls">
-                    <button className="shift_request btn">Send shift request</button>
+                    {/* <button className="shift_request btn">Send shift request</button> */}
                     <button className="create_week btn">Create week</button>
                     <button className="give_options btn">Give options</button>
                     <button className="add_remove btn">Add/Remove Worker</button>
