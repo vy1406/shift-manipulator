@@ -1,35 +1,23 @@
 import React, { Component } from 'react';
-import { observer, inject } from 'mobx-react'
-import Worker from '../worker/Worker';
-import axios from 'axios';
+import './menu.css';
 
-import '../menu/menu.css';
-
-@inject("optionsStore")
-@observer
 class Menu extends Component {
-
-    constructor() {
-        super()
-        this.state = {
-            workers: []
-        }
-    }
-
-    async componentWillMount() {
-        const result = await axios.get("http://localhost:8080/options")
-        this.setState({
-            workers: result.data
-        })
-    }
 
     render() {
         return (
-            <div className="menu">
-                <div className="workers-list">
-                    {this.state.workers.map((worker, i) => <Worker key={i + worker.name} worker={worker} />)}
+            <div className="side-nav">
+                <div className="profile">
+                    <div className="user_picture">
+                        <span>[picture]</span>
+                    </div>
                 </div>
-            </div >
+                <div className="controls">
+                    <button className="shift_request btn">Send shift request</button>
+                    <button className="create_week btn">Create week</button>
+                    <button className="give_options btn">Give options</button>
+                    <button className="add_remove btn">Add/Remove Worker</button>
+                </div>
+            </div>
         )
     }
 }

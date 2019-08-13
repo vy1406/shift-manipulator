@@ -1,5 +1,35 @@
-.workers-list{
-    background-color: pink;
+.side-nav{
     display:grid;
-    grid-template-rows: repeat(1fr);
+
+}
+
+.profile{
+
+}
+
+
+.controls{
+    display:grid;
+    grid-gap:10%;
+}
+
+.btn{
+    padding:5px;
+    margin:5px;
+}
+
+.shift_request{
+
+}
+
+.create_week{
+
+}
+
+.give_options{
+
+}
+
+.add_remove{
+
 }

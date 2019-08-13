@@ -1,3 +1,35 @@
 .App {
   text-align: center;
 }
+
+.container{
+  display:grid;
+  width: 100vw;
+  height: 100vh;
+  grid-template-areas:
+  "h h h h h h h h"
+  "m c c c c c c c"
+  "m c c c c c c c"
+  "m c c c c c c c"
+  "m c c c c c c c"
+  "m c c c c c c c"
+  "m f f f f f f f";
+}
+
+.menu{
+  grid-area:m;
+  background-color: bisque;
+}
+.content{
+  grid-area: c;
+  width:100%;
+  background-color: darkcyan;
+}
+.header{
+  grid-area: h;
+  background-color: cadetblue;
+}
+.footer{
+  grid-area: f;
+  background-color: antiquewhite;
+}
