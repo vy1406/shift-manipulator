@@ -17,10 +17,8 @@ class Option extends Component {
                 </div>
                 <div>
                     evening : {this.props.option.evening.toString()}
-
                 </div>
                 <div>night   : {this.props.option.night.toString()}
-
                 </div>
             </div>
         )

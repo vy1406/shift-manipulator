@@ -1,50 +1,38 @@
 import React, { Component } from 'react';
-
 import Menu from './components/menu/Menu'
-
-import { BrowserRouter as Router, Link } from 'react-router-dom'
+import InnerMenu from './components/inner-menu/InnerMenu';
 import { observer, inject } from 'mobx-react'
+import 'materialize-css/dist/css/materialize.min.css';
 
 import './App.css';
-import InnerMenu from './components/inner-menu/InnerMenu';
+import LinksBar from './components/link-bar/LinksBar';
+import Footer from './components/footer/Footer';
+
 
 @inject("generalStore")
 @observer
 class App extends Component {
 
-  renderLinks = () => {
-    return (
-      <div id="main-links">
-        <Link to="/login">Logins </Link>
-        <Link to="/about">About</Link>
-        <Link to="/Shifts">Shifts</Link>
-        <Link to="/calendar">calendar</Link>
-        <Link to="/about"><button className="btn">about</button></Link>
-        {/* <PrivateRoute exact path="/" component={HomePage} /> */}
-      </div>
-    )
-  }
   render() {
     return (
-      <Router>
-        <div className="App">
-          <div className="container">
-            <div className="menu">
-              <Menu />
-            </div>
+      <div className="col container">
+        <div className="row">
             <div className="header">
-              {this.renderLinks()}
+              <LinksBar />
             </div>
             <div className="content">
-              <InnerMenu />
+              {this.props.generalStore.currentComponent === ""
+                ?
+                <InnerMenu />
+                :
+                this.props.generalStore.currentComponent}
             </div>
-
-            <div className="footer"></div>
-
+          <div className="footer col s12">
+            <Footer />
           </div>
+          
         </div>
-
-      </Router>
+      </div>
     );
   }
 }

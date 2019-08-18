@@ -10,6 +10,7 @@ export class GeneralStore {
     @observable password
     @observable curUser = ""
     @observable userMSG = ""
+    @observable currentComponent = ""
 
     @action handleInput = (key, event) => {
         this[key] = event.target.value
@@ -22,4 +23,9 @@ export class GeneralStore {
         else if (data === "Wrong password!") this.userMSG = "Wrong password!"
         else this.userMSG = "Worker with given email doenst exist."
     }
+
+    @action renderComponent = componentToRender => {
+        this.currentComponent = componentToRender;
+    }
+
 }
