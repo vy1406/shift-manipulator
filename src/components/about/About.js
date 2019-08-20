@@ -4,7 +4,16 @@ class About extends Component {
 
     render() {
         return (
-             <div>about page.</div>
+            <div>
+                <div className="switch">
+                    <label>
+                        Off
+                    <input type="checkbox"></input>
+                        <span class="lever"></span>
+                        On
+    </label>
+                </div>
+            </div>
         )
     }
 }
