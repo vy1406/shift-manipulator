@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './option.css'
-import ToggleSwitch from '../shared/ToggleSwitch';
 
 class Option extends Component {
 
