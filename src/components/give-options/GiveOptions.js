@@ -14,7 +14,7 @@ class GiveOptions extends Component {
 
     render() {
         let arrOptions = this.props.shiftsStore.arrOptions
-        // console.log(this.state.arrOptions)
+
         return (
             <div className="row">
                 {arrOptions.map((option, i) => <Shift key={i} day={i} />)}

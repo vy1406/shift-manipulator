@@ -13,17 +13,18 @@ class Shift extends Component {
     onChangeOption = (event, argSingleOption, i) => {
         console.log(argSingleOption + "," + i + "," + this.props.day + "," + event.target.checked)
         this.props.shiftsStore.onChangeSingleOption(event.target.checked, argSingleOption, i, this.props.day)
-        
+
     }
 
     renderSingleOption = (argSingleOption, i) => {
+        let checkBoxValue = this.props.shiftsStore.arrOptions[this.props.day][argSingleOption]
         return (
             <div className="row" key={argSingleOption + i}>
                 <div className="col s6 m6 l6">{argSingleOption}</div>
                 <div className="col s6 m6 l6">
                     <div className="switch">
                         <label>
-                            <input type="checkbox" defaultChecked={true} onChange={(event) => this.onChangeOption(event, argSingleOption, i)}></input>
+                            <input type="checkbox" defaultChecked={checkBoxValue} onChange={(event) => this.onChangeOption(event, argSingleOption, i)}></input>
                             <span className="lever"></span>
                         </label>
                     </div>
@@ -34,6 +35,7 @@ class Shift extends Component {
 
     renderDayOptions = () => {
         let arrPossibleOptions = ["Morning", "Evening", "Night"]
+
         return (
             <div className="card-content white-text">
                 <span className="card-title">{this.getDayOfWeek()}</span>
@@ -48,7 +50,7 @@ class Shift extends Component {
     }
 
     copyDay = () => {
-        this.props.shiftsStore.copyDay({Morning: false, Evening:true, Night:false})
+        this.props.shiftsStore.copyDay({ Morning: false, Evening: true, Night: false })
         console.log(this.props.shiftsStore.copiedDay.Morning)
     }
 
