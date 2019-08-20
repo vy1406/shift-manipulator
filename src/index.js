@@ -7,11 +7,13 @@ import * as serviceWorker from './serviceWorker';
 
 import { GeneralStore } from './store/GeneralStore'
 import { OptionsStore } from './store/OptionsStore';
+import { ShiftsStore } from './store/ShiftsStore';
 
 const generalStore = new GeneralStore()
 const optionsStore = new OptionsStore()
+const shiftsStore = new ShiftsStore()
 
-const stores = { generalStore, optionsStore }
+const stores = { generalStore, optionsStore, shiftsStore }
 
 
 ReactDOM.render(

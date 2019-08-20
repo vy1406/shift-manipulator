@@ -9,7 +9,7 @@ class About extends Component {
                     <label>
                         Off
                     <input type="checkbox"></input>
-                        <span class="lever"></span>
+                        <span className="lever"></span>
                         On
     </label>
                 </div>
