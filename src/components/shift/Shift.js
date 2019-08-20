@@ -12,6 +12,8 @@ class Shift extends Component {
 
     onChangeOption = (event, argSingleOption, i) => {
         console.log(argSingleOption + "," + i + "," + this.props.day + "," + event.target.checked)
+        this.props.shiftsStore.onChangeSingleOption(event.target.checked, argSingleOption, i, this.props.day)
+        
     }
 
     renderSingleOption = (argSingleOption, i) => {
@@ -42,7 +44,7 @@ class Shift extends Component {
     }
 
     makeDayOff = () => {
-        console.log()
+        console.log(this.props.shiftsStore.arrOptions[this.props.day])
     }
 
     copyDay = () => {
@@ -58,7 +60,7 @@ class Shift extends Component {
                     <div className="col s1 m1 l1"></div>
                     <a className="waves-effect waves-light btn col s3 m3 l3">Paste</a>
                     <div className="col s1 m1 l1"></div>
-                    <a className="waves-effect waves-light btn col s3 m3 l3">D-off</a>
+                    <a className="waves-effect waves-light btn col s3 m3 l3" onClick={(event) => this.makeDayOff()}>D-off</a>
                 </div>
             </div>
         )

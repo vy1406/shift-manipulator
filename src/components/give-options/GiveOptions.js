@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
+import { observer, inject } from 'mobx-react'
 import Shift from '../shift/Shift';
+import axios from 'axios';
 
+@inject("shiftsStore")
+@observer
 class GiveOptions extends Component {
 
+    async componentWillMount() {
+        const result = await axios.get("http://localhost:8080/weekrequest")
+        this.props.shiftsStore.arrOptions = result.data
+    }
+
     render() {
-        let arrOptions = ["lol1", "lol2", "lol3" , "lol4", "lol5", "lol6", "lol7"];
+        let arrOptions = this.props.shiftsStore.arrOptions
+        // console.log(this.state.arrOptions)
         return (
-             <div className="row">
-                {arrOptions.map((option,i) => <Shift key={i} day={i} option={option} />)}
-             </div>
+            <div className="row">
+                {arrOptions.map((option, i) => <Shift key={i} day={i} />)}
+            </div>
         )
     }
 }

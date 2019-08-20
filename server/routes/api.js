@@ -22,6 +22,11 @@ router.get('/options', async function (req, res) {
     res.send(options)
 })
 
+router.get('/weekrequest', async function (req, res) {
+    let options = await dataDao.getLastWeekRequest()
+    res.send(options)
+})
+
 router.post('/login', async function (req, res) {
     let worker = await dataDao.login(req.body)
     res.send(worker)

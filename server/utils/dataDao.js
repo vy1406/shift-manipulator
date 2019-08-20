@@ -2,7 +2,7 @@ const workers = require('./workers.json')
 const options = require('./options.json')
 const Worker = require("../models/Worker")
 const Options = require("../models/Options")
-
+const lastWeekRequest = require('./weekrequest.json')
 class dataDao {
 
     async clearDB() {
@@ -40,7 +40,7 @@ class dataDao {
         // sort by date, return the last one.
         // ---------------------------------
         let result = options
-        return result 
+        return result
     }
 
     async saveOptionToDB(argOptions) {
@@ -55,6 +55,11 @@ class dataDao {
         optionsToSave.save()
     }
 
+    async getLastWeekRequest() {
+        const weekRequest =  lastWeekRequest
+        return weekRequest
+    }
+
     async login(bodyParams) {
         const { email, password } = bodyParams
         let worker = await Worker.find({ email })
@@ -65,7 +70,7 @@ class dataDao {
             return "Wrong password!"
         else
             return worker
-            
+
     }
 }
 

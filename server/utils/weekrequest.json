@@ -1,0 +1,43 @@
+[
+    {
+        "Morning": false, 
+        "Evening": false,
+        "Night": true
+    }, 
+
+    {
+        "Morning": false,
+        "Evening": true,
+        "Night": false
+    }, 
+
+    {
+        "Morning": false,
+        "Evening": false,
+        "Night": false
+    }, 
+
+    {
+        "Morning": false,
+        "Evening": false,
+        "Night": false
+    }, 
+
+    {
+        "Morning": false,
+        "Evening": false,
+        "Night": false
+    }, 
+
+    {
+        "Morning": false,
+        "Evening": false,
+        "Night": false
+    },
+    
+    {
+        "Morning": false,
+        "Evening": false,
+        "Night": false
+    }
+]
