@@ -5,6 +5,13 @@ import { observer, inject } from 'mobx-react'
 @observer
 class Shift extends Component {
 
+    constructor() {
+        super()
+        this.state = {
+            curShift: ""
+        }
+    }
+
     getDayOfWeek = () => {
         let weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
         return weekDays[this.props.day]
@@ -17,13 +24,14 @@ class Shift extends Component {
 
     renderSingleOption = (argSingleOption, i) => {
         let checkBoxValue = this.props.shiftsStore.arrOptions[this.props.day][argSingleOption]
+
         return (
             <div className="row" key={argSingleOption + i}>
                 <div className="col s6 m6 l6">{argSingleOption}</div>
                 <div className="col s6 m6 l6">
                     <div className="switch">
                         <label>
-                            <input type="checkbox" defaultChecked={checkBoxValue} onChange={(event) => this.onChangeOption(event, argSingleOption, i)}></input>
+                            <input type="checkbox" checked={checkBoxValue} onChange={(event) => this.onChangeOption(event, argSingleOption, i)}></input>
                             <span className="lever"></span>
                         </label>
                     </div>

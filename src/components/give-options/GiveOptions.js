@@ -17,7 +17,7 @@ class GiveOptions extends Component {
 
         return (
             <div className="row">
-                {arrOptions.map((option, i) => <Shift key={i} day={i} />)}
+                {arrOptions.map((option, i) => <Shift key={i} day={i} option={option} />)}
             </div>
         )
     }
