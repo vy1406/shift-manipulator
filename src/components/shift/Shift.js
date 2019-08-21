@@ -13,7 +13,6 @@ class Shift extends Component {
     onChangeOption = (event, argSingleOption, i) => {
         console.log(argSingleOption + "," + i + "," + this.props.day + "," + event.target.checked)
         this.props.shiftsStore.onChangeSingleOption(event.target.checked, argSingleOption, i, this.props.day)
-
     }
 
     renderSingleOption = (argSingleOption, i) => {
@@ -47,12 +46,18 @@ class Shift extends Component {
 
     makeDayOff = () => {
         console.log(this.props.shiftsStore.arrOptions[this.props.day])
+        this.props.shiftsStore.makeDayOff(this.props.day)
     }
 
-    copyDay = () => {
-        this.props.shiftsStore.copyDay({ Morning: false, Evening: true, Night: false })
-        console.log(this.props.shiftsStore.copiedDay.Morning)
+    copyDay = () => this.props.shiftsStore.copyDay(this.props.day)
+
+    isPasteDisabled = () => this.props.shiftsStore.copiedDay === "" ? true : false
+
+    pasteDay = () => {
+        this.props.shiftsStore.pasteDay(this.props.day)
+        console.log(this.props.shiftsStore.arrOptions)
     }
+
 
     renderCardOptions = () => {
         return (
@@ -60,9 +65,9 @@ class Shift extends Component {
                 <div className="row">
                     <a className="waves-effect waves-light btn col s3 m3 l3" onClick={this.copyDay}>Copy</a>
                     <div className="col s1 m1 l1"></div>
-                    <a className="waves-effect waves-light btn col s3 m3 l3">Paste</a>
+                    <a className="waves-effect waves-light btn col s3 m3 l3" disabled={this.isPasteDisabled()} onClick={this.pasteDay}>Paste</a>
                     <div className="col s1 m1 l1"></div>
-                    <a className="waves-effect waves-light btn col s3 m3 l3" onClick={(event) => this.makeDayOff()}>D-off</a>
+                    <a className="waves-effect waves-light btn col s3 m3 l3" onClick={(event) => this.makeDayOff(event)}>D-off</a>
                 </div>
             </div>
         )

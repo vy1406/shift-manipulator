@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Menu from './components/menu/Menu'
 import InnerMenu from './components/inner-menu/InnerMenu';
-import { observer, inject } from 'mobx-react'
+import { observer, inject } from 'mobx-react';
 import 'materialize-css/dist/css/materialize.min.css';
 
 import './App.css';
@@ -17,20 +16,19 @@ class App extends Component {
     return (
       <div className="col container">
         <div className="row">
-            <div className="header">
-              <LinksBar />
-            </div>
-            <div className="content">
-              {this.props.generalStore.currentComponent === ""
-                ?
-                <InnerMenu />
-                :
-                this.props.generalStore.currentComponent}
-            </div>
+          <div className="header">
+            <LinksBar />
+          </div>
+          <div className="content">
+            {this.props.generalStore.currentComponent === ""
+              ?
+              <InnerMenu />
+              :
+              this.props.generalStore.currentComponent}
+          </div>
           <div className="footer col s12">
             <Footer />
           </div>
-          
         </div>
       </div>
     );
