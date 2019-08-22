@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react'
 import Shift from '../shift/Shift';
 import axios from 'axios';
-import InputRange from 'react-input-range';
-import '../../../node_modules/react-input-range/lib/css/index.css'
+
 import Slider from '@material-ui/core/Slider';
+// import SaveIcon from '@material-ui/icons/Save';
 
 @inject("shiftsStore")
 @observer
@@ -15,28 +15,45 @@ class GiveOptions extends Component {
         this.props.shiftsStore.arrOptions = result.data
     }
 
+    registerNumOfWantedShifts = (event, value) => {
+        this.props.shiftsStore.numOfWantedShifts = value
+    }
+
+    registerShiftRequest = () => {
+        let shiftRequests = this.props.shiftsStore.arrOptions
+        console.log("send to server...")
+    }
+
     renderControls = () => {
 
         const style = {
+            margin: "1vh",
             color: "pink"
         };
 
         return (
-            <div className="row">
-                <div className="col s6 m6 l6">
+            <div className="row center">
+                <div className="col s12 m12 l4">
                     <Slider
                         defaultValue={0}
                         // getAriaValueText={this.valuetext}
                         aria-labelledby="discrete-slider"
-                        valueLabelDisplay="auto"
                         step={1}
                         style={style}
                         min={0}
-                        max={10}
+                        max={7}
+                        valueLabelDisplay="on"
+                        onChange={(event,value) => this.registerNumOfWantedShifts(event,value)}
                     />
+                    <label>
+                        Number of wanted shifts:
+                    </label>
                 </div>
-                <div classNamee="col s6 m6 l6">
-                    
+                <div className="col s12 m12 l4">
+                    <a className="waves-effect waves-light btn">Do-Something</a>
+                </div>
+                <div className="col s12 m12 l4">
+                    <a className="waves-effect waves-light btn" onClick={this.registerShiftRequest}>Done</a>
                 </div>
             </div>
         )

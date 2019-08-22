@@ -4,11 +4,13 @@ export class ShiftsStore {
 
     constructor() {
         this.copiedDay = ""
+        this.numOfWantedShifts = 0
         this.arrOptions = []
     }
 
     @observable copiedDay
     @observable arrOptions
+    @observable numOfWantedShifts
 
     @action copyDay = (argDayNumber) => {
         this.copiedDay = this.arrOptions[argDayNumber]
@@ -36,4 +38,5 @@ export class ShiftsStore {
 
         this.arrOptions = [...tempArr]
     }
+
 }
