@@ -14,7 +14,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="col container">
+      <div className="col">
         <div className="row">
           <div className="header">
             <LinksBar />
