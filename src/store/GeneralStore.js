@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export class GeneralStore {
     constructor() {
-        this.curUser = ""
+        this.curUser = "velisave"
     }
 
     @observable email

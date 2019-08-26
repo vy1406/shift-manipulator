@@ -6,7 +6,7 @@ import axios from 'axios';
 import Slider from '@material-ui/core/Slider';
 // import SaveIcon from '@material-ui/icons/Save';
 
-@inject("shiftsStore")
+@inject("shiftsStore", "generalStore")
 @observer
 class GiveOptions extends Component {
 
@@ -19,9 +19,15 @@ class GiveOptions extends Component {
         this.props.shiftsStore.numOfWantedShifts = value
     }
 
-    registerShiftRequest = () => {
-        let shiftRequests = this.props.shiftsStore.arrOptions
-        console.log("send to server...")
+    submitShifts = async () => {
+        let params =
+        {
+            arrOptions: this.props.shiftsStore.arrOptions,
+            numOfWantedShifts: this.props.shiftsStore.numOfWantedShifts,
+            user : this.props.generalStore.curUser
+        }
+
+        await axios.post("http://localhost:8080/submitshifts", params)
     }
 
     renderControls = () => {
@@ -43,17 +49,17 @@ class GiveOptions extends Component {
                         min={0}
                         max={7}
                         valueLabelDisplay="on"
-                        onChange={(event,value) => this.registerNumOfWantedShifts(event,value)}
+                        onChange={(event, value) => this.registerNumOfWantedShifts(event, value)}
                     />
                     <label>
                         Number of wanted shifts:
                     </label>
                 </div>
                 <div className="col s12 m12 l4">
-                    <a className="waves-effect waves-light btn">Do-Something</a>
+                    <a className="waves-effect waves-light btn" onClick={event => console.log(event)}>Do-Something</a>
                 </div>
                 <div className="col s12 m12 l4">
-                    <a className="waves-effect waves-light btn" onClick={this.registerShiftRequest}>Done</a>
+                    <a className="waves-effect waves-light btn" onClick={this.submitShifts}>Submit</a>
                 </div>
             </div>
         )

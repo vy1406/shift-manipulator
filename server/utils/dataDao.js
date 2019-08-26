@@ -60,6 +60,10 @@ class dataDao {
         return weekRequest
     }
 
+    async submittedShifts() {
+
+    }
+    
     async login(bodyParams) {
         const { email, password } = bodyParams
         let worker = await Worker.find({ email })
@@ -70,7 +74,6 @@ class dataDao {
             return "Wrong password!"
         else
             return worker
-
     }
 }
 

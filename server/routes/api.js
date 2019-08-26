@@ -32,4 +32,13 @@ router.post('/login', async function (req, res) {
     res.send(worker)
 })
 
+router.post('/submitshifts', async function (req, res) {
+    let submittedShifts = req.body
+    const d = new Date()
+    submittedShifts.date = d
+
+    await dataDao.saveUserOptions(submittedShifts)
+    res.send()
+})
+
 module.exports = router
