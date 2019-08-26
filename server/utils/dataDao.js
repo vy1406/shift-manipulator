@@ -2,6 +2,7 @@ const workers = require('./workers.json')
 const options = require('./options.json')
 const Worker = require("../models/Worker")
 const Options = require("../models/Options")
+const User = require("../models/User")
 const UserShiftRequest = require("../models/UserShiftRequest")
 const lastWeekRequest = require('./weekrequest.json')
 
@@ -58,6 +59,19 @@ class dataDao {
         optionsToSave.save()
     }
 
+    async saveUserToDB(argUser) {
+
+        let userToSave = new User({
+            name: argUser.name,
+            email: argUser.email,
+            user: argUser.user,
+            password: argUser.password,
+            lastName: argUser.lastName,
+        })
+
+        userToSave.save()
+    }
+
     async getLastWeekRequest() {
         const weekRequest =  lastWeekRequest
         return weekRequest
@@ -74,6 +88,11 @@ class dataDao {
 
         console.log("shift request saved " + shiftRequestToSave)
         shiftRequestToSave.save()
+    }
+
+    async getUsers() {
+        let result = await User.find()
+        return result
     }
 
     async login(bodyParams) {

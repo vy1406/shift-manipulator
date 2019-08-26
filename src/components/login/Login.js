@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react'
 import Select from 'react-select';
-
+import axios from 'axios';
 import M from "materialize-css";
+import AddUser from '../add-user/AddUser';
 
 @inject("generalStore")
 @observer
@@ -39,8 +40,12 @@ class Login extends Component {
 
     componentDidMount() {
         let selects = document.querySelectorAll('select');
-
         M.FormSelect.init(selects, {});
+    }
+
+    async componentWillMount() {
+        let users = await axios.get("http://localhost:8080/users")
+        this.props.generalStore.createDropDownUserSelect(users.data)
     }
 
     handleInput = event => { this.props.generalStore.handleInput(event.target.className, event) }
@@ -83,12 +88,13 @@ class Login extends Component {
                     </div>
                     <div className="col s4">
                         <Select id={'dropdown'}
-                            options={options3}
+                            options={this.props.generalStore.selectOptions}
                             defaultValue={{ label: "Select user", value: 0 }}
                             onChange={value => console.log(value)}>
                         </Select>
                     </div>
                 </div>
+                <AddUser />
             </div>
         )
     }

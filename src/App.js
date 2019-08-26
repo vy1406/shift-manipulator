@@ -3,7 +3,7 @@ import InnerMenu from './components/inner-menu/InnerMenu';
 import { observer, inject } from 'mobx-react';
 import 'materialize-css/dist/css/materialize.min.css';
 
-import './App.css';
+import './App.css'; 
 import LinksBar from './components/link-bar/LinksBar';
 import Footer from './components/footer/Footer';
 

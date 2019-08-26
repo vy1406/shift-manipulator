@@ -11,9 +11,22 @@ export class GeneralStore {
     @observable curUser = ""
     @observable userMSG = ""
     @observable currentComponent = ""
-
+    @observable selectOptions
+    // add user
+    // user = { user, name, lastName, email, password }
+    @observable user = { }
+   
     @action handleInput = (key, event) => {
         this[key] = event.target.value
+    }
+
+    @action handleAddUserInput = (key, value) => {
+        this.user[key] = value
+    }
+
+    @action addUser = async () => {
+        let params = this.user
+        await axios.post("http://localhost:8080/user", params)
     }
 
     @action login = async () => {
@@ -24,6 +37,9 @@ export class GeneralStore {
         else this.userMSG = "Worker with given email doenst exist."
     }
 
+    @action createDropDownUserSelect = users => 
+        this.selectOptions  = users.map(u => { return { label: u.user, value: u.user } })
+    
     @action renderComponent = componentToRender => {
         this.currentComponent = componentToRender;
     }

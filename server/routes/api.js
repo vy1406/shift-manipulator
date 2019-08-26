@@ -22,6 +22,16 @@ router.get('/options', async function (req, res) {
     res.send(options)
 })
 
+router.post('/user', async function (req,res) {
+    await dataDao.saveUserToDB(req.body)
+    res.send()
+})
+
+router.get('/users', async function(req,res) {
+    let users = await dataDao.getUsers()
+    res.send(users)
+})
+
 router.get('/weekrequest', async function (req, res) {
     let options = await dataDao.getLastWeekRequest()
     res.send(options)
