@@ -1,5 +1,6 @@
 const workers = require('./workers.json')
 const options = require('./options.json')
+const users = require('./users.json')
 const Worker = require("../models/Worker")
 const Options = require("../models/Options")
 const User = require("../models/User")
@@ -11,7 +12,9 @@ class dataDao {
     async clearDB() {
         Worker.collection.drop()
         Options.collection.drop()
+        User.collection.drop()
         UserShiftRequest.collection.drop()
+        
         console.log("db dropped.")
     }
 
@@ -21,6 +24,9 @@ class dataDao {
 
         for (let i = 0; i < options.length; i++)
             await this.saveOptionToDB(options[i])
+
+        for (let i = 0; i < users.length; i++)
+            await this.saveUserToDB(users[i])
 
         console.log("populated")
     }
@@ -47,6 +53,7 @@ class dataDao {
         return result
     }
 
+    // for population ( testing )
     async saveOptionToDB(argOptions) {
 
         let optionsToSave = new Options({

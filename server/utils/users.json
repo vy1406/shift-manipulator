@@ -1,0 +1,30 @@
+[
+    {
+        "user": "velisave",
+        "name": "Vova",
+        "lastName": "Elisavetski",
+        "email": "yvova88@yahoo.com",
+        "password" : "1234"
+    },
+    {
+        "user":"eiteeloz",
+        "name": "Eitan",
+        "lastName": "Eeloz",
+        "email": "Eitan@yahoo.com",
+        "password" : "1234"
+    },
+    {
+        "user": "diosipov",
+        "name": "Dima",
+        "lastName": "Osipov",
+        "email": "Dima@yahoo.com",
+        "password" : "1234"
+    },
+    {
+        "user": "rshargae",
+        "name": "Roman",
+        "lastName": "Shargaev",
+        "email": "Roman@yahoo.com",
+        "password" : "1234"
+    }
+]
