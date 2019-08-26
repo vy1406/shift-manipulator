@@ -2,7 +2,9 @@ const workers = require('./workers.json')
 const options = require('./options.json')
 const Worker = require("../models/Worker")
 const Options = require("../models/Options")
+const ShiftRequest = require("../models/ShiftRequest")
 const lastWeekRequest = require('./weekrequest.json')
+
 class dataDao {
 
     async clearDB() {
@@ -60,10 +62,18 @@ class dataDao {
         return weekRequest
     }
 
-    async submittedShifts() {
+    async saveUserOptions(argSubmittedShifts) {
 
+        let shiftRequestToSave = new ShiftRequest({
+            user : argSubmittedShifts.user,
+            arrOptions : argSubmittedShifts.arrOptions,
+            numOfWantedShifts: argSubmittedShifts.numOfWantedShifts,
+            date : argSubmittedShifts.date
+        })
+
+        shiftRequestToSave.save()
     }
-    
+
     async login(bodyParams) {
         const { email, password } = bodyParams
         let worker = await Worker.find({ email })
