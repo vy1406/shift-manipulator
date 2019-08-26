@@ -1,13 +1,13 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const ShiftRequestSchema = new Schema({
+const UserShiftRequestSchema = new Schema({
     user : String,
     arrOptions : [],
     date : Date,
     numOfWantedShifts : Number
 })
 
-const ShiftRequest = mongoose.model("ShiftRequest", ShiftRequestSchema)
+const UserShiftRequest = mongoose.model("UserShiftRequest", UserShiftRequestSchema)
 
-module.exports = ShiftRequest
+module.exports = UserShiftRequest

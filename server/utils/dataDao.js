@@ -2,7 +2,7 @@ const workers = require('./workers.json')
 const options = require('./options.json')
 const Worker = require("../models/Worker")
 const Options = require("../models/Options")
-const ShiftRequest = require("../models/ShiftRequest")
+const UserShiftRequest = require("../models/UserShiftRequest")
 const lastWeekRequest = require('./weekrequest.json')
 
 class dataDao {
@@ -10,6 +10,7 @@ class dataDao {
     async clearDB() {
         Worker.collection.drop()
         Options.collection.drop()
+        UserShiftRequest.collection.drop()
         console.log("db dropped.")
     }
 
@@ -64,13 +65,14 @@ class dataDao {
 
     async saveUserOptions(argSubmittedShifts) {
 
-        let shiftRequestToSave = new ShiftRequest({
+        let shiftRequestToSave = new UserShiftRequest({
             user : argSubmittedShifts.user,
             arrOptions : argSubmittedShifts.arrOptions,
             numOfWantedShifts: argSubmittedShifts.numOfWantedShifts,
             date : argSubmittedShifts.date
         })
 
+        console.log("shift request saved " + shiftRequestToSave)
         shiftRequestToSave.save()
     }
 

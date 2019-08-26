@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react'
 import Calendar from '../calendar/Calendar';
 import Shifts from '../shifts/Shifts';
-import About from '../about/About';
+import RequestShifts from '../request-shifts/RequestShifts';
 import Login from '../login/Login';
 import GiveOptions from '../give-options/GiveOptions';
 
@@ -12,20 +12,20 @@ class LinksBar extends Component {
 
     renderGiveOptions = () => this.props.generalStore.renderComponent(<GiveOptions />)
 
-    renderAbout = () => this.props.generalStore.renderComponent(<About />)
+    renderRequestShifts = () => this.props.generalStore.renderComponent(<RequestShifts />)
 
     renderShifts = () => this.props.generalStore.renderComponent(<Shifts />)
 
-    renderCalendar = () => this.props.generalStore.renderComponent(<Calendar />)
+    renderLogin = () => this.props.generalStore.renderComponent(<Login />)
 
     render() {
         return (
             <div className="nav-content">
                 <ul className="tabs tabs-transparent">  
                     <li className="tab col s3" onClick={this.renderGiveOptions}>Give Options </li>
-                    <li className="tab col s3" onClick={this.renderAbout}>About</li>
+                    <li className="tab col s3" onClick={this.renderRequestShifts}>Request Shifts</li>
                     <li className="tab col s3" onClick={this.renderShifts}>Shifts</li>
-                    <li className="tab col s3" onClick={this.renderCalendar}>calendar</li>
+                    <li className="tab col s3" onClick={this.renderLogin}>login</li>
                 </ul>
             </div>
         )

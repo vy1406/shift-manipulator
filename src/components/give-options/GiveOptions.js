@@ -4,7 +4,6 @@ import Shift from '../shift/Shift';
 import axios from 'axios';
 
 import Slider from '@material-ui/core/Slider';
-// import SaveIcon from '@material-ui/icons/Save';
 
 @inject("shiftsStore", "generalStore")
 @observer

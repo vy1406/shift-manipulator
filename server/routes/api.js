@@ -35,6 +35,7 @@ router.post('/login', async function (req, res) {
 router.post('/submitshifts', async function (req, res) {
     let submittedShifts = req.body
     submittedShifts.date = new Date()
+    
     await dataDao.saveUserOptions(submittedShifts)
     res.send()
 })

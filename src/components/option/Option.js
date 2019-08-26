@@ -3,7 +3,6 @@ import './option.css'
 
 class Option extends Component {
 
-
     render() {
         return (
             <div className="single-option">
