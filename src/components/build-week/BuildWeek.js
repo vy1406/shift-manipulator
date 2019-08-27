@@ -4,6 +4,7 @@ import axios from 'axios';
 import Loader from '../shared/Loader';
 import ShiftsInfo from '../build-shift-info/ShiftsInfo';
 import ShiftsChart from '../charts/ShiftsChart';
+import SimpleBarChart from '../charts/SimpleBarChart';
 
 class BuildWeek extends Component {
 
@@ -60,9 +61,12 @@ class BuildWeek extends Component {
         }
 
         let _ = this.state
-        for (let i = 0; i < _.arrShifts.length; i++) {
-            for (let j = 0; j < _.arrUsers.length; j++) {
+        for (let i = 0; i < _.arrUsers.length; i++) {
+            for (let j = 0; j < _.arrShifts.length; j++) {
                 if (_.arrUsers[j].user === _.arrShifts[i].user) {
+                    // _.arrUsers[j]["numOfWantedShifts"] = _.arrShifts[i].numOfWantedShifts
+                    // console.log(_.arrUsers[j])
+                    console.log("lol")
                     if (_.arrShifts[i].arrOptions[dayIndex]["Morning"] === true)
                         result["Morning"].push(_.arrUsers[j].user)
                     if (_.arrShifts[i].arrOptions[dayIndex]["Evening"] === true)
@@ -88,9 +92,25 @@ class BuildWeek extends Component {
         )
     }
 
+    createDataForChart = () => {
+        let _ = this.state
+        let charData = []
+        for (let i = 0; i < _.arrUsers.length; i++) {
+            for (let j = 0; j < _.arrShifts.length; j++) {
+                if (_.arrUsers[j].user === _.arrShifts[i].user)
+                    charData.push({
+                        user : _.arrShifts[j].user,
+                        fullName : _.arrUsers.name.
+                        numOfWantedShifts : _.arrShifts[i].numOfWantedShifts,
+                        numOfCurrentShits : 0
+                    })
+            }
+        }
+        
+        return charData
+    }
+
     render() {
-
-
         return (
             <div>
                 {this.state.isReady ?
@@ -103,7 +123,7 @@ class BuildWeek extends Component {
                                 <ShiftsInfo users={this.state.arrUsers} />
                             </div>
                             <div className="row">
-                                <ShiftsChart />
+                                <SimpleBarChart data={this.createDataForChart()} />
                             </div>
                         </div>
                     </div>

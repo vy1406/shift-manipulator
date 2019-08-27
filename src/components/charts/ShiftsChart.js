@@ -9,7 +9,7 @@ class ShiftsChart extends Component {
                 <Chart
                     width={'500px'}
                     height={'300px'}
-                    chartType="BarChart"
+                    chartType="ColumnChart"
                     loader={<div>Loading Chart</div>}
                     data={[
                         ['City', '2010 Population', '2000 Population'],
