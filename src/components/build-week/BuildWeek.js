@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import DayOptions from '../day-options/DayOptions';
 import axios from 'axios';
+import Loader from '../shared/Loader';
+import ShiftsInfo from '../build-shift-info/ShiftsInfo';
 
 class BuildWeek extends Component {
 
@@ -9,7 +11,9 @@ class BuildWeek extends Component {
         this.state = {
             arrUsers: [],
             arrShifts: [],
-            arrShiftSketch: []
+            arrShiftSketch: [],
+
+            isReady: false // flag to reload the page when the objects are ready.
         }
     }
 
@@ -22,6 +26,7 @@ class BuildWeek extends Component {
         await this.setState({ arrUsers, arrShifts: arrShifts.data })
 
         this.createShiftsSketch()
+
     }
 
     /*
@@ -33,19 +38,20 @@ class BuildWeek extends Component {
     ]
 
     */
-    createShiftsSketch = () => {
+    createShiftsSketch = async () => {
         let userPerDayOptions
         let arrResult = []
         for (let i = 0; i < 7; i++) {
             userPerDayOptions = this.getUsersPerDay(i)
             arrResult.push(userPerDayOptions)
         }
-        this.setState({ arrShiftSketch: arrResult })
+
+        this.setState({ arrShiftSketch: arrResult, isReady: true })
     }
 
     getUsersPerDay = dayIndex => {
         //let arrPossibleOptions = ["Morning", "Evening", "Night"]
-        
+
         let result = {
             "Morning": [],
             "Evening": [],
@@ -70,13 +76,34 @@ class BuildWeek extends Component {
     }
 
     getWorkersByDay = dayIndex => this.state.arrShiftSketch[dayIndex]
-    
-    render() {
+
+    renderOptions = () => {
         let arrWeekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+        return (
+            arrWeekDays.map((day, i) =>
+                <DayOptions key={day + "" + i}
+                    dayWorkerOptions={this.getWorkersByDay(i)}
+                    day={day} />)
+        )
+    }
+
+    render() {
+
 
         return (
-            <div className="row">
-                {arrWeekDays.map((day, i) => <DayOptions dayWorkerOptions={this.getWorkersByDay(i)} day={day} />)}
+            <div>
+                {this.state.isReady ?
+                    <div className="row">
+                        <div className="col s12 m8 l8">
+                            {this.renderOptions()}
+                        </div>
+                        <div className="col s12 m4 l4">
+                            <ShiftsInfo users={this.state.arrUsers}/>
+                        </div>
+                    </div>
+                    :
+                    <Loader />
+                }
             </div>
         )
     }
