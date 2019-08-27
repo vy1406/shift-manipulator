@@ -36,11 +36,12 @@ class App extends Component {
   render() {
     return (
       <div className="content">
-        {this.props.generalStore.curUser === ""
+        {/* {this.props.generalStore.curUser === ""
           ?
           <Login />
           :
-          this.renderMainApp()}
+          this.renderMainApp()} */}
+          {this.renderMainApp()}
       </div>
     );
   }

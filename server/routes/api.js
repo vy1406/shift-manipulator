@@ -32,6 +32,11 @@ router.get('/users', async function(req,res) {
     res.send(users)
 })
 
+router.get('/shiftrequests', async function(req,res){
+    let result = await dataDao.getShiftRequests()
+    res.send(result)
+})
+
 router.get('/weekrequest', async function (req, res) {
     let options = await dataDao.getLastWeekRequest()
     res.send(options)
@@ -43,9 +48,9 @@ router.post('/login', async function (req, res) {
 })
 
 router.post('/submitshifts', async function (req, res) {
+
     let submittedShifts = req.body
     submittedShifts.date = new Date()
-    
     await dataDao.saveUserOptions(submittedShifts)
     res.send()
 })

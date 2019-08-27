@@ -5,6 +5,7 @@ import Shifts from '../shifts/Shifts';
 import RequestShifts from '../request-shifts/RequestShifts';
 import Login from '../login/Login';
 import GiveOptions from '../give-options/GiveOptions';
+import BuildWeek from '../build-week/BuildWeek';
 
 @inject("generalStore")
 @observer
@@ -14,7 +15,7 @@ class LinksBar extends Component {
 
     renderRequestShifts = () => this.props.generalStore.renderComponent(<RequestShifts />)
 
-    renderShifts = () => this.props.generalStore.renderComponent(<Shifts />)
+    renderBuildWeek = () => this.props.generalStore.renderComponent(<BuildWeek />)
 
     renderLogin = () => this.props.generalStore.renderComponent(<Login />)
 
@@ -24,7 +25,7 @@ class LinksBar extends Component {
                 <ul className="tabs tabs-transparent">  
                     <li className="tab col s3" onClick={this.renderGiveOptions}>Give Options </li>
                     <li className="tab col s3" onClick={this.renderRequestShifts}>Request Shifts</li>
-                    <li className="tab col s3" onClick={this.renderShifts}>Shifts</li>
+                    <li className="tab col s3" onClick={this.renderBuildWeek}>BuildWeek</li>
                     <li className="tab col s3" onClick={this.renderLogin}>login</li>
                 </ul>
             </div>

@@ -26,9 +26,10 @@ class Shifts extends Component {
     render() {
         return (
             <div>
-                <div className="workers-list">
+                {/* <div className="workers-list">
                     {this.state.workers.map((worker, i) => <Worker key={i + worker.name} worker={worker} />)}
-                </div>
+                </div> */}
+                
             </div >
         )
     }
