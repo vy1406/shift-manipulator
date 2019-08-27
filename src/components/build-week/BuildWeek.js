@@ -3,6 +3,7 @@ import DayOptions from '../day-options/DayOptions';
 import axios from 'axios';
 import Loader from '../shared/Loader';
 import ShiftsInfo from '../build-shift-info/ShiftsInfo';
+import ShiftsChart from '../charts/ShiftsChart';
 
 class BuildWeek extends Component {
 
@@ -98,7 +99,12 @@ class BuildWeek extends Component {
                             {this.renderOptions()}
                         </div>
                         <div className="col s12 m4 l4">
-                            <ShiftsInfo users={this.state.arrUsers}/>
+                            <div className="row">
+                                <ShiftsInfo users={this.state.arrUsers} />
+                            </div>
+                            <div className="row">
+                                <ShiftsChart />
+                            </div>
                         </div>
                     </div>
                     :

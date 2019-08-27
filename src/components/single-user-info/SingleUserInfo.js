@@ -4,7 +4,9 @@ class SingleUserInfo extends Component {
 
     render() {
         return (
-             <div></div>
+            <div className="col s6 m6 l3">
+                {this.props.user}
+            </div>
         )
     }
 }
