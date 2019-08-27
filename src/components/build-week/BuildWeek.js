@@ -40,13 +40,12 @@ class BuildWeek extends Component {
             userPerDayOptions = this.getUsersPerDay(i)
             arrResult.push(userPerDayOptions)
         }
-        console.log(this.state.arrUsers)
-        console.log(this.state.arrShifts)
-        console.log(arrResult)
         this.setState({ arrShiftSketch: arrResult })
     }
 
     getUsersPerDay = dayIndex => {
+        //let arrPossibleOptions = ["Morning", "Evening", "Night"]
+        
         let result = {
             "Morning": [],
             "Evening": [],
@@ -70,17 +69,14 @@ class BuildWeek extends Component {
         return result
     }
 
-    getWorkersByDay = (dayIndex) => {
-        let workers = {}
-
-        return workers
-    }
-
+    getWorkersByDay = dayIndex => this.state.arrShiftSketch[dayIndex]
+    
     render() {
         let arrWeekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+
         return (
             <div className="row">
-                {arrWeekDays.map((day, i) => <DayOptions users={this.getWorkersByDay(i)} day={day} />)}
+                {arrWeekDays.map((day, i) => <DayOptions dayWorkerOptions={this.getWorkersByDay(i)} day={day} />)}
             </div>
         )
     }
