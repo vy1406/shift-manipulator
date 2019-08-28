@@ -16,21 +16,43 @@ export class BuildShiftStore {
     @observable isReady
     @observable usersShiftObserver
 
-    @action initBuildStore = (length, listOfOptions, arrUsers, arrShifts) => {
-        this.initSubmittedShifts(length, listOfOptions)
+    @action initBuildStore = (length, arrUsers, arrShifts) => {
+
         this.arrShifts = arrShifts
+        let listOfOptions = Object.keys(this.arrShifts[0].arrOptions[0])
+        this.initSubmittedShifts(length, listOfOptions)
         this.initUsers(arrUsers)
         this.initUserShiftObserver()
     }
 
     @action submitShifts = () => {
+
         console.log(this.arrSubmittedShifts)
         console.log(this.arrUsers)
+        console.log(this.usersShiftObserver)
     }
 
     @action chooseUser = (user, shift, dayIndex) => {
+
         this.arrSubmittedShifts[dayIndex][shift] = user
         this.updateUsersShifts()
+        this.createaDataToChart()
+    }
+
+    @action createaDataToChart = () => {
+        let arrUsers = []
+        for (let i = 0; i < this.arrUsers.length; i++) {
+            for (let j = 0; j < this.arrShifts.length; j++) {
+                if (this.arrUsers[j].user === this.arrShifts[i].user)
+                    arrUsers.push({
+                        user: this.arrShifts[j].user,
+                        fullName: this.arrUsers[i].fullName,
+                        numOfWantedShifts: this.arrShifts[i].numOfWantedShifts,
+                        numOfCurrentShifts: this.usersShiftObserver[this.arrShifts[i].user]
+                    })
+            }
+        }
+        this.arrUsers = arrUsers
     }
 
     @action updateUsersShifts = () => {
@@ -52,14 +74,14 @@ export class BuildShiftStore {
     }
 
     @action initUserShiftObserver = () => {
+
         let users = this.arrUsers.map(u => { return { user: u.user, numOfCurrentShifts: 0 } })
-        for (let i = 0; i < users.length; i++) {
+        for (let i = 0; i < users.length; i++)
             this.usersShiftObserver[users[i].user] = users[i].numOfCurrentShifts
-        }
-        console.log(this.usersShiftObserver)
     }
 
-    @action initUsers = (users, ) => {
+    @action initUsers = (users) => {
+
         this.arrUsers = []
         for (let i = 0; i < users.length; i++) {
             for (let j = 0; j < this.arrShifts.length; j++) {
@@ -75,6 +97,7 @@ export class BuildShiftStore {
     }
 
     @action initSubmittedShifts = (length, listOfOptions) => {
+
         if (this.arrSubmittedShifts == null) {
             this.arrSubmittedShifts = []
             for (let i = 0; i < length; i++) {

@@ -11,6 +11,7 @@ class SimpleBarChart extends Component {
 
     render() {
 
+        // const dataToChart = this.props.buildShiftStore.arrUsers
         const dataToChart = this.props.buildShiftStore.arrUsers
         console.log(dataToChart)
 

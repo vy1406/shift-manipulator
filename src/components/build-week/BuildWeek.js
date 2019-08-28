@@ -10,13 +10,12 @@ import { observer, inject } from 'mobx-react'
 class BuildWeek extends Component {
 
     async componentWillMount() {
-        const response_users = await axios.get("http://localhost:8080/users")
-        const arrUsers = response_users.data.map(u => { return { user: u.user, name: u.name, lastName: u.lastName } })
 
+        const response_users = await axios.get("http://localhost:8080/users")
         const arrShifts = await axios.get("http://localhost:8080/shiftrequests")
 
-        let arrOfOptionsPerDay = Object.keys(arrShifts.data[0].arrOptions[0])
-        this.props.buildShiftStore.initBuildStore(arrShifts.data[0].arrOptions.length, arrOfOptionsPerDay, arrUsers, arrShifts.data)
+        const arrUsers = response_users.data.map(u => { return { user: u.user, name: u.name, lastName: u.lastName } })
+        this.props.buildShiftStore.initBuildStore(arrShifts.data[0].arrOptions.length,  arrUsers, arrShifts.data)
         this.createShiftsSketch()
     }
 
@@ -30,6 +29,7 @@ class BuildWeek extends Component {
 
     */
     createShiftsSketch = async () => {
+
         let userPerDayOptions
         let arrResult = []
         for (let i = 0; i < 7; i++) {
@@ -70,6 +70,7 @@ class BuildWeek extends Component {
     getWorkersByDay = dayIndex => this.props.buildShiftStore.arrShiftSketch[dayIndex]
 
     renderOptions = () => {
+
         let arrWeekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
         return (
             arrWeekDays.map((day, i) =>
