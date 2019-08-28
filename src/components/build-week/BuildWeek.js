@@ -5,20 +5,9 @@ import Loader from '../shared/Loader';
 import SimpleBarChart from '../charts/SimpleBarChart';
 import { observer, inject } from 'mobx-react'
 
-@inject("shiftsStore")
+@inject("buildShiftStore")
 @observer
 class BuildWeek extends Component {
-
-    constructor() {
-        super()
-        this.state = {
-            arrUsers: [],
-            arrShifts: [],
-            arrShiftSketch: [],
-
-            isReady: false // flag to reload the page when the objects are ready.
-        }
-    }
 
     async componentWillMount() {
         const response_users = await axios.get("http://localhost:8080/users")
@@ -26,10 +15,15 @@ class BuildWeek extends Component {
 
         const arrShifts = await axios.get("http://localhost:8080/shiftrequests")
 
-        await this.setState({ arrUsers, arrShifts: arrShifts.data })
+        let _ = this.props.buildShiftStore
 
+        let arrOfOptionsPerDay = Object.keys(arrShifts.data[0].arrOptions[0])
+        // this.props.buildShiftStore.arrShifts = arrShifts.data
+        // this.props.buildShiftStore.initSubmittedShifts(arrShifts.data[0].arrOptions.length, arrOfOptionsPerDay)
+        this.props.buildShiftStore.initUsers(arrUsers, arrShifts.data)
+
+        this.props.buildShiftStore.initBuildStore(arrShifts.data[0].arrOptions.length, arrOfOptionsPerDay, arrUsers, arrShifts.data)
         this.createShiftsSketch()
-
     }
 
     /*
@@ -49,8 +43,9 @@ class BuildWeek extends Component {
             arrResult.push(userPerDayOptions)
         }
 
-        this.props.shiftsStore.initSubmittedShifts(7)
-        this.setState({ arrShiftSketch: arrResult, isReady: true })
+        this.props.buildShiftStore.arrShiftSketch = arrResult
+        this.props.buildShiftStore.isReady = true
+        // this.setState({ arrShiftSketch: arrResult, isReady: true })
     }
 
     getUsersPerDay = dayIndex => {
@@ -62,7 +57,7 @@ class BuildWeek extends Component {
             "Night": []
         }
 
-        let _ = this.state
+        let _ = this.props.buildShiftStore
         for (let i = 0; i < _.arrUsers.length; i++) {
             for (let j = 0; j < _.arrShifts.length; j++) {
                 if (_.arrUsers[j].user === _.arrShifts[i].user) {
@@ -79,7 +74,7 @@ class BuildWeek extends Component {
         return result
     }
 
-    getWorkersByDay = dayIndex => this.state.arrShiftSketch[dayIndex]
+    getWorkersByDay = dayIndex => this.props.buildShiftStore.arrShiftSketch[dayIndex]
 
     renderOptions = () => {
         let arrWeekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -87,27 +82,9 @@ class BuildWeek extends Component {
             arrWeekDays.map((day, i) =>
                 <DayOptions key={day + "" + i}
                     dayWorkerOptions={this.getWorkersByDay(i)}
-                    day={day} 
-                    dayIndex={i}/>)
+                    day={day}
+                    dayIndex={i} />)
         )
-    }
-
-    createDataForChart = () => {
-        let _ = this.state
-        let charData = []
-        for (let i = 0; i < _.arrUsers.length; i++) {
-            for (let j = 0; j < _.arrShifts.length; j++) {
-                if (_.arrUsers[j].user === _.arrShifts[i].user)
-                    charData.push({
-                        user: _.arrShifts[j].user,
-                        fullName: _.arrUsers[i].name.split("")[0] + "." + _.arrUsers[i].lastName,
-                        numOfWantedShifts: _.arrShifts[i].numOfWantedShifts,
-                        numOfCurrentShifts: 0
-                    })
-            }
-        }
-
-        return charData
     }
 
     renderControls = () => {
@@ -119,13 +96,13 @@ class BuildWeek extends Component {
     }
 
     submitShifts = () => {
-        this.props.shiftsStore.submitShifts()
+        this.props.buildShiftStore.submitShifts()
     }
 
     render() {
         return (
             <div>
-                {this.state.isReady ?
+                {this.props.buildShiftStore.isReady ?
                     <div className="row">
                         <div className="col s12 m8 l8">
                             {this.renderOptions()}
@@ -136,7 +113,7 @@ class BuildWeek extends Component {
                                 {/* <ShiftsInfo users={this.state.arrUsers} /> */}
                             </div>
                             <div className="row">
-                                <SimpleBarChart data={this.createDataForChart()} />
+                                <SimpleBarChart data={this.props.buildShiftStore.arrUsers} />
                             </div>
                             <div className="row">
                                 {this.renderControls()}

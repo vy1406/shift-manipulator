@@ -6,14 +6,11 @@ export class ShiftsStore {
         this.copiedDay = ""
         this.numOfWantedShifts = 0
         this.arrOptions = []
-        this.arrSubmittedShifts = null
     }
 
     @observable copiedDay
     @observable arrOptions
     @observable numOfWantedShifts
-
-    @observable submittedShifts
 
     @action copyDay = (argDayNumber) => {
         this.copiedDay = this.arrOptions[argDayNumber]
@@ -39,27 +36,4 @@ export class ShiftsStore {
         this.arrOptions = [...tempArr]
     }
 
-    @action submitShifts = () => {
-        console.log(this.arrSubmittedShifts)
-    }
-
-    @action chooseUser = (user, shift, dayIndex) => {
-        console.log(user)
-        console.log(shift)
-        console.log(dayIndex)
-
-        console.log(this.arrSubmittedShifts)
-        let tempArr = [...this.arrSubmittedShifts]
-
-        this.tempArr[dayIndex][shift] = user
-    }
-
-    @action initSubmittedShifts = (length) => {
-        if (this.arrSubmittedShifts) {
-            this.arrSubmittedShifts = []
-            for (let i = 0; i < length; i++)
-                this.arrSubmittedShifts.push({})
-        }
-
-    }
 }

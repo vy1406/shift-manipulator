@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Select from 'react-select';
 import { observer, inject } from 'mobx-react'
 
-@inject("shiftsStore")
+@inject("buildShiftStore")
 @observer
 class DayOptions extends Component {
 
@@ -31,7 +31,7 @@ class DayOptions extends Component {
                         options={this.createDropDownUserList(argSingleOption)}
                         defaultValue={{ label: "Select...", value: 0 }}
                         styles={customStyles}
-                        onChange={value => this.props.shiftsStore.chooseUser(value.value, argSingleOption,this.props.dayIndex)}>
+                        onChange={value => this.props.buildShiftStore.chooseUser(value.value, argSingleOption,this.props.dayIndex)}>
                     </Select>
                 </div>
             </div>

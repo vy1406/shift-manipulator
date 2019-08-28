@@ -8,12 +8,14 @@ import * as serviceWorker from './serviceWorker';
 import { GeneralStore } from './store/GeneralStore'
 import { OptionsStore } from './store/OptionsStore';
 import { ShiftsStore } from './store/ShiftsStore';
+import { BuildShiftStore } from './store/BuildShiftStore';
 
 const generalStore = new GeneralStore()
 const optionsStore = new OptionsStore()
 const shiftsStore = new ShiftsStore()
+const buildShiftStore = new BuildShiftStore()
 
-const stores = { generalStore, optionsStore, shiftsStore }
+const stores = { generalStore, optionsStore, shiftsStore , buildShiftStore }
 
 
 ReactDOM.render(
