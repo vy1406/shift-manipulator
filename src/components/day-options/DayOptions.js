@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
+import { observer, inject } from 'mobx-react'
 
+@inject("shiftsStore")
+@observer
 class DayOptions extends Component {
 
     renderSingleOption = (argSingleOption, i) => {
@@ -28,7 +31,7 @@ class DayOptions extends Component {
                         options={this.createDropDownUserList(argSingleOption)}
                         defaultValue={{ label: "Select...", value: 0 }}
                         styles={customStyles}
-                        onChange={value => console.log(value)}>
+                        onChange={value => this.props.shiftsStore.chooseUser(value.value, argSingleOption,this.props.dayIndex)}>
                     </Select>
                 </div>
             </div>

@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import DayOptions from '../day-options/DayOptions';
 import axios from 'axios';
 import Loader from '../shared/Loader';
-import ShiftsInfo from '../build-shift-info/ShiftsInfo';
-import ShiftsChart from '../charts/ShiftsChart';
 import SimpleBarChart from '../charts/SimpleBarChart';
+import { observer, inject } from 'mobx-react'
 
+@inject("shiftsStore")
+@observer
 class BuildWeek extends Component {
 
     constructor() {
@@ -21,7 +22,7 @@ class BuildWeek extends Component {
 
     async componentWillMount() {
         const response_users = await axios.get("http://localhost:8080/users")
-        const arrUsers = response_users.data.map(u => { return { user: u.user } })
+        const arrUsers = response_users.data.map(u => { return { user: u.user, name: u.name, lastName: u.lastName } })
 
         const arrShifts = await axios.get("http://localhost:8080/shiftrequests")
 
@@ -48,6 +49,7 @@ class BuildWeek extends Component {
             arrResult.push(userPerDayOptions)
         }
 
+        this.props.shiftsStore.initSubmittedShifts(7)
         this.setState({ arrShiftSketch: arrResult, isReady: true })
     }
 
@@ -64,9 +66,6 @@ class BuildWeek extends Component {
         for (let i = 0; i < _.arrUsers.length; i++) {
             for (let j = 0; j < _.arrShifts.length; j++) {
                 if (_.arrUsers[j].user === _.arrShifts[i].user) {
-                    // _.arrUsers[j]["numOfWantedShifts"] = _.arrShifts[i].numOfWantedShifts
-                    // console.log(_.arrUsers[j])
-                    console.log("lol")
                     if (_.arrShifts[i].arrOptions[dayIndex]["Morning"] === true)
                         result["Morning"].push(_.arrUsers[j].user)
                     if (_.arrShifts[i].arrOptions[dayIndex]["Evening"] === true)
@@ -88,7 +87,8 @@ class BuildWeek extends Component {
             arrWeekDays.map((day, i) =>
                 <DayOptions key={day + "" + i}
                     dayWorkerOptions={this.getWorkersByDay(i)}
-                    day={day} />)
+                    day={day} 
+                    dayIndex={i}/>)
         )
     }
 
@@ -99,15 +99,27 @@ class BuildWeek extends Component {
             for (let j = 0; j < _.arrShifts.length; j++) {
                 if (_.arrUsers[j].user === _.arrShifts[i].user)
                     charData.push({
-                        user : _.arrShifts[j].user,
-                        fullName : _.arrUsers.name.
-                        numOfWantedShifts : _.arrShifts[i].numOfWantedShifts,
-                        numOfCurrentShits : 0
+                        user: _.arrShifts[j].user,
+                        fullName: _.arrUsers[i].name.split("")[0] + "." + _.arrUsers[i].lastName,
+                        numOfWantedShifts: _.arrShifts[i].numOfWantedShifts,
+                        numOfCurrentShifts: 0
                     })
             }
         }
-        
+
         return charData
+    }
+
+    renderControls = () => {
+        return (
+            <div>
+                <a className="waves-effect waves-light btn" onClick={this.submitShifts}><i className="material-icons right">cloud</i>Submit Shifts</a>
+            </div>
+        )
+    }
+
+    submitShifts = () => {
+        this.props.shiftsStore.submitShifts()
     }
 
     render() {
@@ -120,12 +132,17 @@ class BuildWeek extends Component {
                         </div>
                         <div className="col s12 m4 l4">
                             <div className="row">
-                                <ShiftsInfo users={this.state.arrUsers} />
+                                {console.log("Render here some user mood...")}
+                                {/* <ShiftsInfo users={this.state.arrUsers} /> */}
                             </div>
                             <div className="row">
                                 <SimpleBarChart data={this.createDataForChart()} />
                             </div>
+                            <div className="row">
+                                {this.renderControls()}
+                            </div>
                         </div>
+
                     </div>
                     :
                     <Loader />
