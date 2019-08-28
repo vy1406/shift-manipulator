@@ -8,6 +8,7 @@ export class BuildShiftStore {
         this.arrShiftSketch = []
         this.isReady = false // for loader
         this.usersShiftObserver = {}
+        this.isSubmitShiftFull = false
     }
 
     @observable submittedShifts
@@ -15,6 +16,7 @@ export class BuildShiftStore {
     @observable arrShiftSketch
     @observable isReady
     @observable usersShiftObserver
+    @observable isSubmitShiftFull
 
     @action initBuildStore = (length, arrUsers, arrShifts) => {
 
@@ -30,6 +32,24 @@ export class BuildShiftStore {
         console.log(this.arrSubmittedShifts)
         console.log(this.arrUsers)
         console.log(this.usersShiftObserver)
+        this.checkIfSubmitShiftFull()
+    }
+
+    @action checkIfSubmitShiftFull = () => {
+
+        let dayOptions = Object.keys(this.arrSubmittedShifts[0])
+        let curShift, curDayOption, isSomewhereMissingWorker = false
+        for (let i = 0; i < this.arrSubmittedShifts.length; i++) {
+            curShift = this.arrSubmittedShifts[i]
+            for (let j = 0; j < dayOptions.length; j++) {
+                curDayOption = dayOptions[j]
+                if (curShift[curDayOption] == null) {
+                    isSomewhereMissingWorker = true
+                    break;
+                }
+            }
+        }
+        this.isSubmitShiftFull = isSomewhereMissingWorker ? false : true
     }
 
     @action chooseUser = (user, shift, dayIndex) => {
