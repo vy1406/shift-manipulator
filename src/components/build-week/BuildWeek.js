@@ -15,13 +15,7 @@ class BuildWeek extends Component {
 
         const arrShifts = await axios.get("http://localhost:8080/shiftrequests")
 
-        let _ = this.props.buildShiftStore
-
         let arrOfOptionsPerDay = Object.keys(arrShifts.data[0].arrOptions[0])
-        // this.props.buildShiftStore.arrShifts = arrShifts.data
-        // this.props.buildShiftStore.initSubmittedShifts(arrShifts.data[0].arrOptions.length, arrOfOptionsPerDay)
-        this.props.buildShiftStore.initUsers(arrUsers, arrShifts.data)
-
         this.props.buildShiftStore.initBuildStore(arrShifts.data[0].arrOptions.length, arrOfOptionsPerDay, arrUsers, arrShifts.data)
         this.createShiftsSketch()
     }
@@ -49,7 +43,6 @@ class BuildWeek extends Component {
     }
 
     getUsersPerDay = dayIndex => {
-        //let arrPossibleOptions = ["Morning", "Evening", "Night"]
 
         let result = {
             "Morning": [],
@@ -113,7 +106,7 @@ class BuildWeek extends Component {
                                 {/* <ShiftsInfo users={this.state.arrUsers} /> */}
                             </div>
                             <div className="row">
-                                <SimpleBarChart data={this.props.buildShiftStore.arrUsers} />
+                                <SimpleBarChart />
                             </div>
                             <div className="row">
                                 {this.renderControls()}

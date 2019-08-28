@@ -3,17 +3,22 @@ import {
     BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
 
+import { observer, inject } from 'mobx-react'
+
+@inject("buildShiftStore")
+@observer
 class SimpleBarChart extends Component {
 
     render() {
 
-        const dataToChar = this.props.data
-        
+        const dataToChart = this.props.buildShiftStore.arrUsers
+        console.log(dataToChart)
+
         return (
             <BarChart
                 width={400}
                 height={300}
-                data={dataToChar}
+                data={dataToChart}
                 margin={{
                     top: 5, right: 30, left: 20, bottom: 5,
                 }}
