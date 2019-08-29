@@ -11,7 +11,7 @@ import ShareIcon from '@material-ui/icons/Share';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        
+        // height: 380,
     },
     speedDial: {
         position: 'absolute',

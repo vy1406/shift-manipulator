@@ -4,6 +4,7 @@ import Shift from '../shift/Shift';
 import axios from 'axios';
 
 import Slider from '@material-ui/core/Slider';
+import CustomFab from '../shared/CustomFab';
 
 @inject("shiftsStore", "generalStore")
 @observer
@@ -23,7 +24,7 @@ class GiveOptions extends Component {
         {
             arrOptions: this.props.shiftsStore.arrOptions,
             numOfWantedShifts: this.props.shiftsStore.numOfWantedShifts,
-            user : this.props.generalStore.curUser
+            user: this.props.generalStore.curUser
         }
 
         await axios.post("http://localhost:8080/submitshifts", params)

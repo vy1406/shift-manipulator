@@ -8,6 +8,7 @@ import LinksBar from './components/link-bar/LinksBar';
 import Footer from './components/footer/Footer';
 import Login from './components/login/Login';
 import CustomFab from './components/shared/CustomFab';
+import LoginForm from './components/login/LoginForm';
 
 @inject("generalStore")
 @observer
@@ -34,20 +35,22 @@ class App extends Component {
         </div>
         <CustomFab />
       </div>
-      
+
     )
   }
 
   render() {
     return (
-      <div className="content">
-        {/* {this.props.generalStore.curUser === ""
-          ?
-          <Login />
-          :
-          this.renderMainApp()} */}
-        {this.renderMainApp()}
-      </div>
+      // uncomment all this to render the main app
+      // <div className="content">
+      //   {/* {this.props.generalStore.curUser === ""
+      //     ?
+      //     <Login />
+      //     :
+      //     this.renderMainApp()} */}
+      //   {this.renderMainApp()}
+      // </div>
+      <LoginForm />
     );
   }
 }
