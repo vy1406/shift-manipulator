@@ -39,7 +39,6 @@ class BuildWeek extends Component {
 
         this.props.buildShiftStore.arrShiftSketch = arrResult
         this.props.buildShiftStore.isReady = true
-        // this.setState({ arrShiftSketch: arrResult, isReady: true })
     }
 
     getUsersPerDay = dayIndex => {
@@ -113,7 +112,6 @@ class BuildWeek extends Component {
                                 {this.renderControls()}
                             </div>
                         </div>
-
                     </div>
                     :
                     <Loader />

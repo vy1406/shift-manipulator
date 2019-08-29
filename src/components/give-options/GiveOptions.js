@@ -37,7 +37,7 @@ class GiveOptions extends Component {
         };
 
         return (
-            <div className="row center">
+            <div className="row">
                 <div className="col s12 m12 l4">
                     <Slider
                         defaultValue={0}

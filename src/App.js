@@ -7,11 +7,14 @@ import './App.css';
 import LinksBar from './components/link-bar/LinksBar';
 import Footer from './components/footer/Footer';
 import Login from './components/login/Login';
-
+import CustomFab from './components/shared/CustomFab';
 
 @inject("generalStore")
 @observer
 class App extends Component {
+
+  // Fab - floating action button
+
 
   renderMainApp = () => {
     return (
@@ -29,7 +32,9 @@ class App extends Component {
         <div className="footer col s12">
           <Footer />
         </div>
+        <CustomFab />
       </div>
+      
     )
   }
 
@@ -41,7 +46,7 @@ class App extends Component {
           <Login />
           :
           this.renderMainApp()} */}
-          {this.renderMainApp()}
+        {this.renderMainApp()}
       </div>
     );
   }
