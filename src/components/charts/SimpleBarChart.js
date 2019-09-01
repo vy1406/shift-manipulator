@@ -15,7 +15,7 @@ class SimpleBarChart extends Component {
 
         return (
             <BarChart
-                width={500}
+                width={450}
                 height={300}
                 data={dataToChart}
                 margin={{

@@ -5,7 +5,7 @@ const users = require('./users.json')
 const Worker = require("../models/Worker")
 const Options = require("../models/Options")
 const User = require("../models/User")
-
+const SubmittedShifts = require("../models/SubmittedShifts")
 const UserShiftRequest = require("../models/UserShiftRequest")
 const lastWeekRequest = require('./weekrequest.json')
 
@@ -122,6 +122,23 @@ class dataDao {
             return "Wrong password!"
         else
             return db_user
+    }
+
+    async saveSubmittedShifts(argSubmittedShifts) {
+        let submittedShiftsToSave = new SubmittedShifts({
+            shifts: argSubmittedShifts.shifts,
+            date: argSubmittedShifts.date
+        })
+
+        console.log("submitted shifts saved ")
+        console.log(submittedShiftsToSave)
+
+        submittedShiftsToSave.save()
+    }
+
+    async getLastSubmittedShifts() {
+        let result = await SubmittedShifts.find()
+        return result
     }
 }
 

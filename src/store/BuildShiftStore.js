@@ -1,4 +1,5 @@
 import { observable, action } from 'mobx'
+import axios from 'axios';
 
 export class BuildShiftStore {
 
@@ -28,12 +29,13 @@ export class BuildShiftStore {
         this.initUserShiftObserver()
     }
 
-    @action submitShifts = () => {
+    @action submitShifts = async () => {
 
         console.log(this.arrSubmittedShifts)
-        console.log(this.arrUsers)
-        console.log(this.usersShiftObserver)
+        console.log(this.arrUsers)             // for statistics ( users with num of wanted and given)
         this.checkIfSubmitShiftFull()
+        if (this.isSubmitShiftFull)
+            await axios.post("http://localhost:8080/submitshifts", this.arrSubmittedShifts)
     }
 
     @action checkIfSubmitShiftFull = () => {

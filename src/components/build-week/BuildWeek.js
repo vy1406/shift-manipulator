@@ -88,9 +88,8 @@ class BuildWeek extends Component {
         )
     }
 
-    submitShifts = () => {
-        this.props.buildShiftStore.submitShifts()
-    }
+    submitShifts = () => this.props.buildShiftStore.submitShifts()
+    
 
     render() {
         return (
