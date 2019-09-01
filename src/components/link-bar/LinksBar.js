@@ -1,33 +1,18 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react'
-import Calendar from '../calendar/Calendar';
-import Shifts from '../shifts/Shifts';
-import RequestShifts from '../request-shifts/RequestShifts';
-import Login from '../login/Login';
-import GiveOptions from '../give-options/GiveOptions';
-import BuildWeek from '../build-week/BuildWeek';
-import LoginForm from '../login/LoginForm';
-import WorkSchedule from '../work-schedule/WorkSchedule';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 @inject("generalStore")
 @observer
 class LinksBar extends Component {
 
-    renderGiveOptions = () => this.props.generalStore.renderComponent(<GiveOptions />)
-
-    renderWorkSchedule = () => this.props.generalStore.renderComponent(<WorkSchedule />)
-
-    renderBuildWeek = () => this.props.generalStore.renderComponent(<BuildWeek />)
-
-    renderLoginForm = () => this.props.generalStore.renderComponent(<LoginForm />)
-
     renderAdminLinks = () => {
         return (
             <ul className="tabs tabs-transparent">
-                <li className="tab col s3" onClick={this.renderGiveOptions}>Give Options </li>
-                <li className="tab col s3" onClick={this.renderWorkSchedule}>WorkSchedule</li>
-                <li className="tab col s3" onClick={this.renderBuildWeek}>BuildWeek</li>
-                <li className="tab col s3" onClick={this.renderLoginForm}>LoginForm</li>
+                <li className="tab col s3"><Link to="/giveoptions">Give Options</Link></li>
+                <li className="tab col s3"><Link to="/schedule">WorkSchedule</Link></li>
+                <li className="tab col s3"><Link to="/build">BuildWeek</Link></li>
+                <li className="tab col s3"><Link to="/login">LoginForm</Link></li>
             </ul>
         )
     }
@@ -35,8 +20,8 @@ class LinksBar extends Component {
     renderBasicLinks = () => {
         return (
             <ul className="tabs tabs-transparent">
-                <li className="tab col s6 m6 l6" onClick={this.renderGiveOptions}>Give Options</li>
-                <li className="tab col s6 m6 l6" onClick={this.renderLogin}>Current Week</li>
+                <li className="tab col s6 m6 l6" ><Link to="/giveoptions">Give Options</Link></li>
+                <li className="tab col s6 m6 l6" ><Link to="/schedule">WorkSchedule</Link></li>
             </ul>
         )
     }
