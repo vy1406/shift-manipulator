@@ -20,15 +20,34 @@ class LinksBar extends Component {
 
     renderLoginForm = () => this.props.generalStore.renderComponent(<LoginForm />)
 
+    renderAdminLinks = () => {
+        return (
+            <ul className="tabs tabs-transparent">
+                <li className="tab col s3" onClick={this.renderGiveOptions}>Give Options </li>
+                <li className="tab col s3" onClick={this.renderLogin}>Login</li>
+                <li className="tab col s3" onClick={this.renderBuildWeek}>BuildWeek</li>
+                <li className="tab col s3" onClick={this.renderLoginForm}>LoginForm</li>
+            </ul>
+        )
+    }
+
+    renderBasicLinks = () => {
+        return (
+            <ul className="tabs tabs-transparent">
+                <li className="tab col s6 m6 l6" onClick={this.renderGiveOptions}>Give Options</li>
+                <li className="tab col s6 m6 l6" onClick={this.renderLogin}>Current Week</li>
+            </ul>
+        )
+    }
+
     render() {
         return (
             <div className="nav-content">
-                <ul className="tabs tabs-transparent">  
-                    <li className="tab col s3" onClick={this.renderGiveOptions}>Give Options </li>
-                    <li className="tab col s3" onClick={this.renderLogin}>Login</li>
-                    <li className="tab col s3" onClick={this.renderBuildWeek}>BuildWeek</li>
-                    <li className="tab col s3" onClick={this.renderLoginForm}>LoginForm</li>
-                </ul>
+                {/* {this.props.generalStore.loggedUser.isAdmin ?
+                    this.renderAdminLinks()
+                    :
+                    this.renderBasicLinks()} */}
+                {this.renderAdminLinks()}
             </div>
         )
     }

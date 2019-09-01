@@ -43,8 +43,9 @@ router.get('/weekrequest', async function (req, res) {
 })
 
 router.post('/login', async function (req, res) {
-    let worker = await dataDao.login(req.body)
-    res.send(worker)
+    let user = await dataDao.login(req.body)
+    console.log(user)
+    res.send(user)
 })
 
 router.post('/submitshifts', async function (req, res) {

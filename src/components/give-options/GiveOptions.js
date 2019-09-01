@@ -24,9 +24,8 @@ class GiveOptions extends Component {
         {
             arrOptions: this.props.shiftsStore.arrOptions,
             numOfWantedShifts: this.props.shiftsStore.numOfWantedShifts,
-            user: this.props.generalStore.curUser
+            user: this.props.generalStore.loggedUser.user
         }
-
         await axios.post("http://localhost:8080/submitshifts", params)
     }
 

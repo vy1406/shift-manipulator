@@ -14,6 +14,7 @@ export class GeneralStore {
     @observable userMSG = ""
     @observable currentComponent = ""
     @observable selectOptions
+    @observable loggedUser = ""
 
     // add user
     // user = { user, name, lastName, email, password }
@@ -33,13 +34,12 @@ export class GeneralStore {
     }
 
     @action login = async () => {
-        // let params = { email: this.email, password: this.password }
-        // let data = await axios.post("http://localhost:8080/login", params)
-        // if (data === "Welcome") this.curUser = data
-        // else if (data === "Wrong password!") this.userMSG = "Wrong password!"
-        // else this.userMSG = "Worker with given email doenst exist."
-        console.log(this.userinput + " : " + this.passwordinput)
-        this.curUser = this.userinput
+        let params = { user: this.userinput, password: this.passwordinput }
+        let data = await axios.post("http://localhost:8080/login", params)
+
+        console.log("loggind user : ")
+        console.log(data.data[0])
+        this.loggedUser = data.data[0]
     }
 
     @action createDropDownUserSelect = users =>

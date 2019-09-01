@@ -43,7 +43,7 @@ class App extends Component {
     return (
       
       <div className="content">
-        {/* {this.props.generalStore.curUser === ""
+        {/* {this.props.generalStore.loggedUser === ""
           ?
           <LoginForm />
           :

@@ -6,7 +6,8 @@ const UserSchema = new Schema({
     name:String,
     lastName: String,
     password: String,
-    email: String
+    email: String,
+    isAdmin: Boolean
 })
 
 const User = mongoose.model("user", UserSchema)

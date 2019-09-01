@@ -22,7 +22,8 @@ export class BuildShiftStore {
 
         this.arrShifts = arrShifts
         let listOfOptions = Object.keys(this.arrShifts[0].arrOptions[0])
-        this.initSubmittedShifts(length, listOfOptions)
+
+        this.initSubmittedShifts(length, listOfOptions) // length -> num of days, listOfOptions -> options per day
         this.initUsers(arrUsers)
         this.initUserShiftObserver()
     }
@@ -50,6 +51,7 @@ export class BuildShiftStore {
             }
         }
         this.isSubmitShiftFull = isSomewhereMissingWorker ? false : true
+        console.log("this.isSubmitShiftFull:" + this.isSubmitShiftFull)
     }
 
     @action chooseUser = (user, shift, dayIndex) => {
@@ -63,15 +65,16 @@ export class BuildShiftStore {
         let arrUsers = []
         for (let i = 0; i < this.arrUsers.length; i++) {
             for (let j = 0; j < this.arrShifts.length; j++) {
-                if (this.arrUsers[j].user === this.arrShifts[i].user)
+                if (this.arrUsers[i].user === this.arrShifts[j].user)
                     arrUsers.push({
                         user: this.arrShifts[j].user,
                         fullName: this.arrUsers[i].fullName,
-                        numOfWantedShifts: this.arrShifts[i].numOfWantedShifts,
-                        numOfCurrentShifts: this.usersShiftObserver[this.arrShifts[i].user]
+                        numOfWantedShifts: this.arrShifts[j].numOfWantedShifts,
+                        numOfCurrentShifts: this.usersShiftObserver[this.arrShifts[j].user]
                     })
             }
         }
+
         this.arrUsers = arrUsers
     }
 
@@ -101,15 +104,14 @@ export class BuildShiftStore {
     }
 
     @action initUsers = (users) => {
-
         this.arrUsers = []
         for (let i = 0; i < users.length; i++) {
             for (let j = 0; j < this.arrShifts.length; j++) {
-                if (users[j].user === this.arrShifts[i].user)
+                if (users[i].user === this.arrShifts[j].user)
                     this.arrUsers.push({
                         user: this.arrShifts[j].user,
                         fullName: users[i].name.split("")[0] + "." + users[i].lastName,
-                        numOfWantedShifts: this.arrShifts[i].numOfWantedShifts,
+                        numOfWantedShifts: this.arrShifts[j].numOfWantedShifts,
                         numOfCurrentShifts: 0
                     })
             }

@@ -16,7 +16,7 @@ class dataDao {
         Options.collection.drop()
         User.collection.drop()
         UserShiftRequest.collection.drop()
-        
+
         console.log("db dropped.")
     }
 
@@ -76,13 +76,14 @@ class dataDao {
             user: argUser.user,
             password: argUser.password,
             lastName: argUser.lastName,
+            isAdmin: argUser.isAdmin
         })
 
         userToSave.save()
     }
 
     async getLastWeekRequest() {
-        const weekRequest =  lastWeekRequest
+        const weekRequest = lastWeekRequest
         return weekRequest
     }
 
@@ -94,10 +95,10 @@ class dataDao {
     async saveUserOptions(argSubmittedShifts) {
 
         let shiftRequestToSave = new UserShiftRequest({
-            user : argSubmittedShifts.user,
-            arrOptions : argSubmittedShifts.arrOptions,
+            user: argSubmittedShifts.user,
+            arrOptions: argSubmittedShifts.arrOptions,
             numOfWantedShifts: argSubmittedShifts.numOfWantedShifts,
-            date : argSubmittedShifts.date
+            date: argSubmittedShifts.date
         })
 
         console.log("shift request saved ")
@@ -112,15 +113,15 @@ class dataDao {
     }
 
     async login(bodyParams) {
-        const { email, password } = bodyParams
-        let worker = await Worker.find({ email })
+        const { user, password } = bodyParams
+        let db_user = await User.find({ user })
 
-        if (worker.length === 0)
+        if (db_user.length === 0)
             return "Worker with given email doenst exist."
-        else if (worker[0].password !== password)
+        else if (db_user[0].password !== password)
             return "Wrong password!"
         else
-            return worker
+            return db_user
     }
 }
 
