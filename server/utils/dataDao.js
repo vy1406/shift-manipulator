@@ -1,13 +1,14 @@
 const workers = require('./workers.json')
 const options = require('./options.json')
 const users = require('./users.json')
+const lastWeekRequest = require('./weekrequest.json')
 
 const Worker = require("../models/Worker")
 const Options = require("../models/Options")
 const User = require("../models/User")
 const SubmittedShifts = require("../models/SubmittedShifts")
 const UserShiftRequest = require("../models/UserShiftRequest")
-const lastWeekRequest = require('./weekrequest.json')
+
 
 class dataDao {
 
@@ -137,6 +138,11 @@ class dataDao {
     }
 
     async getLastSubmittedShifts() {
+        let result = await SubmittedShifts.find()
+        return result
+    }
+
+    async getWorkSchedule() {
         let result = await SubmittedShifts.find()
         return result
     }

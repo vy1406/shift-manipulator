@@ -61,4 +61,9 @@ router.post('/submitshifts', async function (req, res) {
     res.send()
 })
 
+router.get('/workschedule', async function(req,res) {
+    let result = await dataDao.getWorkSchedule()
+    res.send(result)
+})
+
 module.exports = router

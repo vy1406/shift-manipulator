@@ -6,6 +6,6 @@ const SubmittedShiftSchema = new Schema({
     date : Date
 })
 
-const SubmittedShift = mongoose.model("SubmittedShift", SubmittedShiftSchema)
+const SubmittedShifts = mongoose.model("SubmittedShift", SubmittedShiftSchema)
 
-module.exports = SubmittedShift
+module.exports = SubmittedShifts

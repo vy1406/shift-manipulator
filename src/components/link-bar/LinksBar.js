@@ -7,6 +7,7 @@ import Login from '../login/Login';
 import GiveOptions from '../give-options/GiveOptions';
 import BuildWeek from '../build-week/BuildWeek';
 import LoginForm from '../login/LoginForm';
+import WorkSchedule from '../work-schedule/WorkSchedule';
 
 @inject("generalStore")
 @observer
@@ -14,7 +15,7 @@ class LinksBar extends Component {
 
     renderGiveOptions = () => this.props.generalStore.renderComponent(<GiveOptions />)
 
-    renderLogin = () => this.props.generalStore.renderComponent(<Login />)
+    renderWorkSchedule = () => this.props.generalStore.renderComponent(<WorkSchedule />)
 
     renderBuildWeek = () => this.props.generalStore.renderComponent(<BuildWeek />)
 
@@ -24,7 +25,7 @@ class LinksBar extends Component {
         return (
             <ul className="tabs tabs-transparent">
                 <li className="tab col s3" onClick={this.renderGiveOptions}>Give Options </li>
-                <li className="tab col s3" onClick={this.renderLogin}>Login</li>
+                <li className="tab col s3" onClick={this.renderWorkSchedule}>WorkSchedule</li>
                 <li className="tab col s3" onClick={this.renderBuildWeek}>BuildWeek</li>
                 <li className="tab col s3" onClick={this.renderLoginForm}>LoginForm</li>
             </ul>

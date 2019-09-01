@@ -9,13 +9,15 @@ import { GeneralStore } from './store/GeneralStore'
 import { OptionsStore } from './store/OptionsStore';
 import { ShiftsStore } from './store/ShiftsStore';
 import { BuildShiftStore } from './store/BuildShiftStore';
+import { WorkScheduleStore } from './store/WorkScheduleStore';
 
 const generalStore = new GeneralStore()
 const optionsStore = new OptionsStore()
 const shiftsStore = new ShiftsStore()
 const buildShiftStore = new BuildShiftStore()
+const workScheduleStore = new WorkScheduleStore()
 
-const stores = { generalStore, optionsStore, shiftsStore , buildShiftStore }
+const stores = { generalStore, optionsStore, shiftsStore , buildShiftStore , workScheduleStore}
 
 
 ReactDOM.render(
