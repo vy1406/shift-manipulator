@@ -41,16 +41,16 @@ class App extends Component {
 
   render() {
     return (
-      // uncomment all this to render the main app
-      // <div className="content">
-      //   {/* {this.props.generalStore.curUser === ""
-      //     ?
-      //     <Login />
-      //     :
-      //     this.renderMainApp()} */}
-      //   {this.renderMainApp()}
-      // </div>
-      <LoginForm />
+      
+      <div className="content">
+        {/* {this.props.generalStore.curUser === ""
+          ?
+          <LoginForm />
+          :
+          this.renderMainApp()} */}
+        {this.renderMainApp()}
+      </div>
+      
     );
   }
 }
