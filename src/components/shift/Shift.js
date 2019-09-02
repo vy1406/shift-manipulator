@@ -47,7 +47,7 @@ class Shift extends Component {
 
         return (
             <div className="card-content white-text">
-                <span className="card-title">{this.getDayOfWeek()}</span>
+                <span className="card-title flow-text">{this.getDayOfWeek()}</span>
                 <hr color="aqua"></hr>
                 {arrPossibleOptions.map((singleOption, i) => this.renderSingleOption(singleOption, i))}
             </div>

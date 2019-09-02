@@ -85,7 +85,7 @@ class BuildWeek extends Component {
             width: "100%"
         }
         return (
-            <div className="col col s12 m4 offset-m4">
+            <div className="col col s12 m12 l12">
                 <a className="waves-effect waves-light btn" style={styles} onClick={this.submitShifts}>Submit Shifts</a>
             </div>
         )

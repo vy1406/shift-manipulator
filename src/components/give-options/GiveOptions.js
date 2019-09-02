@@ -33,7 +33,7 @@ class GiveOptions extends Component {
     renderControls = () => {
 
         const style = {
-            color: "pink",
+            color: "#26A69A",
             marginTop:'15px',
             width: "95%"
         };
@@ -69,7 +69,6 @@ class GiveOptions extends Component {
                 </div>
                 <div clasSName="row" >
                     <div className="col s12 m12 l4" style={margin}>
-                        {/* <a className="waves-effect waves-light btn" style={styleButton} onClick={event => console.log(event)}>Do-Something</a> */}
                         <div className="form-field">
                             <button className="btn-large waves-effect waves-dark" style={styleButton}
                                 onClick={event => console.log(event)}>Do-Something</button>
@@ -78,11 +77,9 @@ class GiveOptions extends Component {
                 </div>
                 <div className="row" >
                     <div className="col s12 m12 l4" style={margin}>
-                        {/* <a className="waves-effect waves-light btn" style={styleButton} onClick={this.submitShifts}>Submit</a> */}
                         <div className="form-field">
                             <button className="btn-large waves-effect waves-dark" style={styleButton}
                                 onClick={this.submitShifts}>Login</button>
-
                         </div>
                     </div>
                 </div>
