@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { observer, inject } from 'mobx-react'
 
-@inject("shiftsStore")
-@observer
-class Shift extends Component {
+class Card extends Component {
 
     constructor() {
         super()
@@ -27,14 +24,12 @@ class Shift extends Component {
 
         return (
             <div className="row" key={argSingleOption + i}>
-                <div className="col s6 m6 l6"><span className="shift">{argSingleOption}</span></div>
+                <div className="col s6 m6 l6">{argSingleOption}</div>
                 <div className="col s6 m6 l6">
                     <div className="switch">
                         <label>
                             <input type="checkbox" checked={checkBoxValue} onChange={(event) => this.onChangeOption(event, argSingleOption, i)}></input>
-                            {/* <span className="lever"></span> */}
-                            {/* uncomment this to make the switch */}
-                            <span className=""></span>
+                            <span className="lever"></span>
                         </label>
                     </div>
                 </div>
@@ -96,5 +91,4 @@ class Shift extends Component {
         )
     }
 }
-
-export default Shift;
+export default Card;

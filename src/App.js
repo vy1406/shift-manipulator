@@ -22,10 +22,10 @@ class App extends Component {
   renderRoutes = () => {
     return (
       <div>
-        <Route exact path="/login" render={() => <LoginForm/>} />
-        <Route exact path="/giveoptions" render={() => <GiveOptions/>} />
-        <Route exact path="/schedule" render={() => <WorkSchedule/>} />
-        <Route exact path="/build" render={() => <BuildWeek/>} />
+        <Route exact path="/login" render={() => <LoginForm />} />
+        <Route exact path="/giveoptions" render={() => <GiveOptions />} />
+        <Route exact path="/" render={() => <WorkSchedule />} />
+        <Route exact path="/build" render={() => <BuildWeek />} />
       </div>
     )
   }
@@ -35,7 +35,9 @@ class App extends Component {
       <Router>
         <div className="row">
           <div className="header">
-            <LinksBar />
+            <div className="row">
+              <LinksBar />
+            </div>
           </div>
           <div className="content">
             {this.renderRoutes()}

@@ -45,14 +45,20 @@ after materialize
 }
 
 .content{
-
-  background-color: darkcyan;
+  background-color: #e8eaf6;
 }
 .header{
 
   background-color: cadetblue;
 }
 .footer{
-
   background-color: antiquewhite;
 } 
+
+.card-title{
+  font-family: 'Indie Flower';
+}
+
+.shift{
+  font-family: 'Barlow', sans-serif;
+}

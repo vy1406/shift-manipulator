@@ -81,9 +81,12 @@ class BuildWeek extends Component {
     }
 
     renderControls = () => {
+        const styles = {
+            width: "100%"
+        }
         return (
-            <div>
-                <a className="waves-effect waves-light btn" onClick={this.submitShifts}><i className="material-icons right">cloud</i>Submit Shifts</a>
+            <div className="col col s12 m4 offset-m4">
+                <a className="waves-effect waves-light btn" style={styles} onClick={this.submitShifts}>Submit Shifts</a>
             </div>
         )
     }

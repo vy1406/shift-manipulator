@@ -6,6 +6,7 @@ import axios from 'axios';
 import Slider from '@material-ui/core/Slider';
 import CustomFab from '../shared/CustomFab';
 
+
 @inject("shiftsStore", "generalStore")
 @observer
 class GiveOptions extends Component {
@@ -32,35 +33,60 @@ class GiveOptions extends Component {
     renderControls = () => {
 
         const style = {
-            margin: "1vh",
-            color: "pink"
+            color: "pink",
+            marginTop:'15px',
+            width: "95%"
         };
 
+        const styleButton = {
+            width: "100%"
+        }
+
+        const margin = { 
+            marginTop:'10px'
+        }
         return (
             <div className="row">
                 <div className="col s12 m12 l4">
-                    <Slider
-                        defaultValue={0}
-                        // getAriaValueText={this.valuetext}
-                        aria-labelledby="discrete-slider"
-                        step={1}
-                        style={style}
-                        min={0}
-                        max={7}
-                        valueLabelDisplay="on"
-                        onChange={(event, value) => this.registerNumOfWantedShifts(event, value)}
-                    />
-                    <label>
-                        Number of wanted shifts:
-                    </label>
+                    <div className="row">
+                        <label>
+                            Number of wanted shifts:
+                        </label>
+                    </div>
+                    <div className="row">
+                        <Slider
+                            defaultValue={0}
+                            // getAriaValueText={this.valuetext}
+                            aria-labelledby="discrete-slider"
+                            step={1}
+                            style={style}
+                            min={0}
+                            max={7}
+                            valueLabelDisplay="on"
+                            onChange={(event, value) => this.registerNumOfWantedShifts(event, value)}
+                        />
+                    </div>
                 </div>
-                <div className="col s12 m12 l4">
-                    <a className="waves-effect waves-light btn" onClick={event => console.log(event)}>Do-Something</a>
+                <div clasSName="row" >
+                    <div className="col s12 m12 l4" style={margin}>
+                        {/* <a className="waves-effect waves-light btn" style={styleButton} onClick={event => console.log(event)}>Do-Something</a> */}
+                        <div className="form-field">
+                            <button className="btn-large waves-effect waves-dark" style={styleButton}
+                                onClick={event => console.log(event)}>Do-Something</button>
+                        </div>
+                    </div>
                 </div>
-                <div className="col s12 m12 l4">
-                    <a className="waves-effect waves-light btn" onClick={this.submitShifts}>Submit</a>
+                <div className="row" >
+                    <div className="col s12 m12 l4" style={margin}>
+                        {/* <a className="waves-effect waves-light btn" style={styleButton} onClick={this.submitShifts}>Submit</a> */}
+                        <div className="form-field">
+                            <button className="btn-large waves-effect waves-dark" style={styleButton}
+                                onClick={this.submitShifts}>Login</button>
+
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </div >
         )
     }
 

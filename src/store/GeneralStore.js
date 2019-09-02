@@ -12,7 +12,6 @@ export class GeneralStore {
     @observable password
     @observable curUser = ""
     @observable userMSG = ""
-    @observable currentComponent = ""
     @observable selectOptions
     @observable loggedUser = ""
 
@@ -44,9 +43,5 @@ export class GeneralStore {
 
     @action createDropDownUserSelect = users =>
         this.selectOptions = users.map(u => { return { label: u.user, value: u.user } })
-
-    @action renderComponent = componentToRender => {
-        this.currentComponent = componentToRender;
-    }
 
 }

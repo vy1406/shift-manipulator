@@ -11,7 +11,7 @@ class SingleDaySchedule extends Component {
 
         return (
             <div className="row" key={argSingleOption + i}>
-                <div className="col s6 m6 l6">{argSingleOption}</div>
+                <div className="col s6 m6 l6"><span className="shift">{argSingleOption}</span></div>
                 <div className="col s6 m6 l6">{this.props.schedule[argSingleOption]}</div>
             </div>
         )
