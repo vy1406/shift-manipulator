@@ -2,16 +2,11 @@ import { observable, action } from 'mobx'
 import axios from 'axios';
 
 export class GeneralStore {
-    constructor() {
-        this.curUser = ""
-    }
 
     @observable userinput = ""
     @observable passwordinput = ""
     @observable email
     @observable password
-    @observable curUser = ""
-    @observable userMSG = ""
     @observable selectOptions
     @observable loggedUser = ""
 
@@ -36,9 +31,11 @@ export class GeneralStore {
         let params = { user: this.userinput, password: this.passwordinput }
         let data = await axios.post("http://localhost:8080/login", params)
 
-        console.log("loggind user : ")
-        console.log(data.data[0])
         this.loggedUser = data.data[0]
+    }
+
+    @action logout = () => {
+        this.loggedUser = ""
     }
 
     @action createDropDownUserSelect = users =>

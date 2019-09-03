@@ -5,11 +5,13 @@ import axios from 'axios';
 
 import Slider from '@material-ui/core/Slider';
 import CustomFab from '../shared/CustomFab';
-
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 @inject("shiftsStore", "generalStore")
 @observer
 class GiveOptions extends Component {
+
 
     async componentWillMount() {
         const result = await axios.get("http://localhost:8080/weekrequest")
@@ -30,11 +32,13 @@ class GiveOptions extends Component {
         await axios.post("http://localhost:8080/submitshifts", params)
     }
 
+    notifyB = () => toast('Shifts Submitted...');
+
     renderControls = () => {
 
         const style = {
             color: "#26A69A",
-            marginTop:'15px',
+            marginTop: '15px',
             width: "95%"
         };
 
@@ -42,9 +46,11 @@ class GiveOptions extends Component {
             width: "100%"
         }
 
-        const margin = { 
-            marginTop:'10px'
+        const margin = {
+            marginTop: '10px'
         }
+
+
         return (
             <div className="row">
                 <div className="col s12 m12 l4">
@@ -71,7 +77,7 @@ class GiveOptions extends Component {
                     <div className="col s12 m12 l4" style={margin}>
                         <div className="form-field">
                             <button className="btn-large waves-effect waves-dark" style={styleButton}
-                                onClick={event => console.log(event)}>Do-Something</button>
+                                onClick={this.notifyB}>Do-Something</button>
                         </div>
                     </div>
                 </div>
@@ -79,7 +85,7 @@ class GiveOptions extends Component {
                     <div className="col s12 m12 l4" style={margin}>
                         <div className="form-field">
                             <button className="btn-large waves-effect waves-dark" style={styleButton}
-                                onClick={this.submitShifts}>Login</button>
+                                onClick={this.submitShifts}>Submit</button>
                         </div>
                     </div>
                 </div>
@@ -98,9 +104,11 @@ class GiveOptions extends Component {
                 <div className="row">
                     {this.renderControls()}
                 </div>
+                <div>
+                    <ToastContainer enableMultiContainer position={toast.POSITION.TOP_RIGHT} />
+                </div>
             </div>
         )
     }
 }
-
 export default GiveOptions;

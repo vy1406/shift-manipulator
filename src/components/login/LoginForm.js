@@ -18,6 +18,8 @@ class LoginForm extends Component {
             width: "100%"
         }
 
+        this.props.generalStore.logout()
+        
         return (
             <div class="row">
                 <div className="col s12 m4 offset-m4">

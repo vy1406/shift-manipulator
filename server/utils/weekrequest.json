@@ -2,12 +2,12 @@
     {
         "Morning": false, 
         "Evening": false,
-        "Night": true
+        "Night": false
     }, 
 
     {
         "Morning": false,
-        "Evening": true,
+        "Evening": false,
         "Night": false
     }, 
 

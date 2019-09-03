@@ -3,7 +3,7 @@
         "user": "velisave",
         "name": "Vova",
         "lastName": "Elisavetski",
-        "email": "yvova88@yahoo.com",
+        "email": "Vova@yahoo.com",
         "password" : "1234",
         "isAdmin": true
     },
@@ -13,7 +13,7 @@
         "lastName": "Eeloz",
         "email": "Eitan@yahoo.com",
         "password" : "1234",
-        "isAdmin": true
+        "isAdmin": false
     },
     {
         "user": "diosipov",
@@ -28,6 +28,14 @@
         "name": "Roman",
         "lastName": "Shargaev",
         "email": "Roman@yahoo.com",
+        "password" : "1234",
+        "isAdmin": false
+    },
+    {
+        "user": "ssimakov",
+        "name": "Semyon",
+        "lastName": "Simakov",
+        "email": "semyon@yahoo.com",
         "password" : "1234",
         "isAdmin": false
     }

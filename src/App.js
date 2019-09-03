@@ -22,7 +22,7 @@ class App extends Component {
   renderRoutes = () => {
     return (
       <div>
-        <Route exact path="/login" render={() => <LoginForm />} />
+        <Route exact path="/logout" render={() => <LoginForm />} />
         <Route exact path="/giveoptions" render={() => <GiveOptions />} />
         <Route exact path="/" render={() => <WorkSchedule />} />
         <Route exact path="/build" render={() => <BuildWeek />} />
@@ -43,7 +43,7 @@ class App extends Component {
             {this.renderRoutes()}
           </div>
           <div className="footer col s12">
-            <Footer />
+            {/* <Footer /> */}
           </div>
           <CustomFab />
         </div>

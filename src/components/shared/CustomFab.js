@@ -9,12 +9,13 @@ import SaveIcon from '@material-ui/icons/Save';
 import PrintIcon from '@material-ui/icons/Print';
 import ShareIcon from '@material-ui/icons/Share';
 
+
 const useStyles = makeStyles(theme => ({
     root: {
         // height: 380,
     },
     speedDial: {
-        position: 'absolute',
+        position: 'fixed',
         bottom: theme.spacing(2),
         right: theme.spacing(3),
     },
