@@ -13,8 +13,8 @@ class LinksBar extends Component {
         return (
 
             <ul className="tabs tabs-transparent  teal lighten-1" >
-                <li className="tab col s3"><Link to="/giveoptions">Give Options</Link></li>
-                <li className="tab col s3"><Link to="/">Roster</Link></li>
+                <li className="tab col s3"><Link to="/">Give Options</Link></li>
+                <li className="tab col s3"><Link to="/giveoptions">Roster</Link></li>
                 <li className="tab col s3"><Link to="/build">BuildWeek</Link></li>
                 <li className="tab col s3"><Link to="/logout">Logout</Link></li>
             </ul>

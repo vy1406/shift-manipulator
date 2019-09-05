@@ -12,7 +12,6 @@ import 'react-toastify/dist/ReactToastify.css';
 @observer
 class GiveOptions extends Component {
 
-
     async componentWillMount() {
         const result = await axios.get("http://localhost:8080/weekrequest")
         this.props.shiftsStore.arrOptions = result.data
@@ -30,9 +29,10 @@ class GiveOptions extends Component {
             user: this.props.generalStore.loggedUser.user
         }
         await axios.post("http://localhost:8080/submitshifts", params)
+        this.notifyShiftSubmitted()
     }
 
-    notifyB = () => toast('Shifts Submitted...');
+    notifyShiftSubmitted = () => toast('Shifts Submitted...');
 
     renderControls = () => {
 
@@ -49,7 +49,6 @@ class GiveOptions extends Component {
         const margin = {
             marginTop: '10px'
         }
-
 
         return (
             <div className="row">
@@ -77,7 +76,7 @@ class GiveOptions extends Component {
                     <div className="col s12 m12 l4" style={margin}>
                         <div className="form-field">
                             <button className="btn-large waves-effect waves-dark" style={styleButton}
-                                onClick={this.notifyB}>Do-Something</button>
+                                onClick={this.notifyShiftSubmitted}>Do-Something</button>
                         </div>
                     </div>
                 </div>

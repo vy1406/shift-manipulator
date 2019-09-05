@@ -5,20 +5,12 @@ import { observer, inject } from 'mobx-react'
 @observer
 class Shift extends Component {
 
-    constructor() {
-        super()
-        this.state = {
-            curShift: ""
-        }
-    }
-
     getDayOfWeek = () => {
         let weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
         return weekDays[this.props.day]
     }
 
     onChangeOption = (event, argSingleOption, i) => {
-        console.log(argSingleOption + "," + i + "," + this.props.day + "," + event.target.checked)
         this.props.shiftsStore.onChangeSingleOption(event.target.checked, argSingleOption, i, this.props.day)
     }
 

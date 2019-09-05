@@ -35,7 +35,7 @@
         "user": "ssimakov",
         "name": "Semyon",
         "lastName": "Simakov",
-        "email": "semyon@yahoo.com",
+        "email": "Semyon@yahoo.com",
         "password" : "1234",
         "isAdmin": false
     }

@@ -35,7 +35,7 @@ export class BuildShiftStore {
         console.log(this.arrUsers)             // for statistics ( users with num of wanted and given)
         this.checkIfSubmitShiftFull()
         if (this.isSubmitShiftFull)
-            await axios.post("http://localhost:8080/submitshifts", this.arrSubmittedShifts)
+            await axios.post("http://localhost:8080/submitroster", this.arrSubmittedShifts)
     }
 
     @action checkIfSubmitShiftFull = () => {

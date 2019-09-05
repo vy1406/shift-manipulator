@@ -55,9 +55,22 @@ router.post('/login', async function (req, res) {
 router.post('/submitshifts', async function (req, res) {
 
     let submittedShifts = {}
+    submittedShifts.arrOptions = req.body.arrOptions
+    submittedShifts.numOfWantedShifts = req.body.numOfWantedShifts
+    submittedShifts.user = req.body.user
+    submittedShifts.date = new Date()
+
+    await dataDao.saveUserOptions(submittedShifts)
+    res.send()
+})
+
+router.post('/submitroster', async function (req, res) {
+
+    let submittedShifts = {}
     submittedShifts.shifts = req.body
     submittedShifts.date = new Date()
-    await dataDao.saveSubmittedShifts(submittedShifts)
+
+    await dataDao.saveRoaster(submittedShifts)
     res.send()
 })
 

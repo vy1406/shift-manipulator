@@ -125,7 +125,7 @@ class dataDao {
             return db_user
     }
 
-    async saveSubmittedShifts(argSubmittedShifts) {
+    async saveRoaster(argSubmittedShifts) {
         let submittedShiftsToSave = new SubmittedShifts({
             shifts: argSubmittedShifts.shifts,
             date: argSubmittedShifts.date
@@ -146,6 +146,8 @@ class dataDao {
         let result = await SubmittedShifts.find()
         return result
     }
+
+    
 }
 
 module.exports = dataDao

@@ -12,6 +12,7 @@ import LoginForm from './components/login/LoginForm';
 import GiveOptions from './components/give-options/GiveOptions';
 import WorkSchedule from './components/work-schedule/WorkSchedule';
 import BuildWeek from './components/build-week/BuildWeek';
+import CalendarCmp from './components/calendar/CalendarCmp';
 
 @inject("generalStore")
 @observer
@@ -45,7 +46,7 @@ class App extends Component {
           <div className="footer col s12">
             {/* <Footer /> */}
           </div>
-          <CustomFab />
+          {/* <CustomFab /> */}
         </div>
       </Router>
     )
@@ -60,7 +61,8 @@ class App extends Component {
           <LoginForm />
           :
           this.renderMainApp()} */}
-        {this.renderMainApp()}
+        {/* {this.renderMainApp()} */}
+        <CalendarCmp />
       </div>
 
     );

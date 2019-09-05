@@ -1,43 +1,43 @@
 [
     {
-        "Morning": false, 
-        "Evening": false,
-        "Night": false
+        "Morning": true, 
+        "Evening": true,
+        "Night": true
     }, 
 
     {
-        "Morning": false,
-        "Evening": false,
-        "Night": false
+        "Morning": true,
+        "Evening": true,
+        "Night": true
     }, 
 
     {
-        "Morning": false,
-        "Evening": false,
-        "Night": false
+        "Morning": true,
+        "Evening": true,
+        "Night": true
     }, 
 
     {
-        "Morning": false,
-        "Evening": false,
-        "Night": false
+        "Morning": true,
+        "Evening": true,
+        "Night": true
     }, 
 
     {
-        "Morning": false,
-        "Evening": false,
-        "Night": false
+        "Morning": true,
+        "Evening": true,
+        "Night": true
     }, 
 
     {
-        "Morning": false,
-        "Evening": false,
-        "Night": false
+        "Morning": true,
+        "Evening": true,
+        "Night": true
     },
     
     {
-        "Morning": false,
-        "Evening": false,
-        "Night": false
+        "Morning": true,
+        "Evening": true,
+        "Night": true
     }
 ]

@@ -15,7 +15,7 @@ class BuildWeek extends Component {
 
         const response_users = await axios.get("http://localhost:8080/users")
         const arrShifts = await axios.get("http://localhost:8080/shiftrequests")
-        
+        console.log(arrShifts)
         const arrUsers = response_users.data.map(u => { return { user: u.user, name: u.name, lastName: u.lastName } })
         this.props.buildShiftStore.initBuildStore(arrShifts.data[0].arrOptions.length,  arrUsers, arrShifts.data)
         this.createShiftsSketch()
