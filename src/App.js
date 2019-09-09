@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import 'materialize-css/dist/css/materialize.min.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-
+import RequestWeekDialog from './components/dialog/RequestWeekDialog';
 import './App.css';
 import LinksBar from './components/link-bar/LinksBar';
 import Footer from './components/footer/Footer';
@@ -13,6 +13,7 @@ import GiveOptions from './components/give-options/GiveOptions';
 import WorkSchedule from './components/work-schedule/WorkSchedule';
 import BuildWeek from './components/build-week/BuildWeek';
 import CalendarCmp from './components/calendar/CalendarCmp';
+
 
 @inject("generalStore")
 @observer
@@ -27,6 +28,7 @@ class App extends Component {
         <Route exact path="/giveoptions" render={() => <GiveOptions />} />
         <Route exact path="/" render={() => <WorkSchedule />} />
         <Route exact path="/build" render={() => <BuildWeek />} />
+        <Route exact path="/calendar" render={() => <CalendarCmp />} />
       </div>
     )
   }
@@ -46,7 +48,7 @@ class App extends Component {
           <div className="footer col s12">
             {/* <Footer /> */}
           </div>
-          {/* <CustomFab /> */}
+          <CustomFab />
         </div>
       </Router>
     )
@@ -62,7 +64,8 @@ class App extends Component {
           :
           this.renderMainApp()} */}
         {/* {this.renderMainApp()} */}
-        <CalendarCmp />
+        {/* <CalendarCmp /> */}
+        <RequestWeekDialog/>
       </div>
 
     );

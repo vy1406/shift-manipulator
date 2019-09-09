@@ -7,8 +7,9 @@ import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
 import SaveIcon from '@material-ui/icons/Save';
 import PrintIcon from '@material-ui/icons/Print';
+import CalendarToday from '@material-ui/icons/CalendarToday';
 import ShareIcon from '@material-ui/icons/Share';
-
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -24,7 +25,7 @@ const useStyles = makeStyles(theme => ({
 const actions = [
     { icon: <FileCopyIcon />, name: 'Copy' },
     { icon: <SaveIcon />, name: 'Save' },
-    { icon: <PrintIcon />, name: 'Print' },
+    { icon: <Link to="/calendar"><CalendarToday /></Link> , name: 'Calendar' },
     { icon: <ShareIcon onClick={event => console.log("share")} />, name: 'Share' },
 ];
 

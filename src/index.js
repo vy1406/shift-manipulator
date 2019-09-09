@@ -10,14 +10,16 @@ import { OptionsStore } from './store/OptionsStore';
 import { ShiftsStore } from './store/ShiftsStore';
 import { BuildShiftStore } from './store/BuildShiftStore';
 import { WorkScheduleStore } from './store/WorkScheduleStore';
+import {DialogStore } from './store/DialogStore'
 
 const generalStore = new GeneralStore()
 const optionsStore = new OptionsStore()
 const shiftsStore = new ShiftsStore()
 const buildShiftStore = new BuildShiftStore()
 const workScheduleStore = new WorkScheduleStore()
+const dialogStore = new DialogStore()
 
-const stores = { generalStore, optionsStore, shiftsStore , buildShiftStore , workScheduleStore}
+const stores = { generalStore, optionsStore, shiftsStore , buildShiftStore , workScheduleStore, dialogStore}
 
 
 ReactDOM.render(
