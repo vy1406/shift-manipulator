@@ -14,12 +14,12 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 class RequestWeekDialog extends Component {
 
 
-    handleClickOpen = () => this.props.dialogStore.setOpen(true)
-    
-    handleClose = () => this.props.dialogStore.setOpen(false)
-    
-    requestOptions = () => this.props.dialogStore.setOpen(false)
-    
+    handleClickOpen = () => this.props.dialogStore.setOpenWeekRequest(true)
+
+    handleClose = () => this.props.dialogStore.setOpenWeekRequest(false)
+
+    requestOptions = () => this.props.dialogStore.requestWeek(false)
+
 
     render() {
         return (
@@ -27,20 +27,27 @@ class RequestWeekDialog extends Component {
                 <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
                     Open form dialog
                 </Button>
-                <Dialog open={this.props.dialogStore.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+                <Dialog fullWidth={true} open={this.props.dialogStore.isOpenWeekRequest} onClose={this.handleClose} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">Request Week Options</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            Send an email to everybody to submit options
+                            {this.props.dialogStore.msg === "" ?
+                                <div>
+                                    Send an email to everybody to submit options
+                                    <hr></hr>
+                                    last sent is.. TODO: show what was the last options sent. ( show dates )
+                                </div>
+                                :
+                                this.props.dialogStore.msg}
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.handleClose} color="primary">
                             Cancel
-                    </Button>
-                        <Button onClick={this.requestOptions} color="primary">
+                        </Button>
+                        <Button disabled={this.props.dialogStore.isDisabled} onClick={this.requestOptions} color="primary">
                             Request Options
-                    </Button>
+                        </Button>
                     </DialogActions>
                 </Dialog>
             </div >
