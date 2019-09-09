@@ -33,6 +33,14 @@ class App extends Component {
     )
   }
 
+  renderDialogs = () => {
+    return (
+      <div>
+        <RequestWeekDialog />
+      </div>
+    )
+  }
+
   renderMainApp = () => {
     return (
       <Router>
@@ -49,6 +57,7 @@ class App extends Component {
             {/* <Footer /> */}
           </div>
           <CustomFab />
+          {this.renderDialogs()}
         </div>
       </Router>
     )
@@ -63,9 +72,9 @@ class App extends Component {
           <LoginForm />
           :
           this.renderMainApp()} */}
-        {/* {this.renderMainApp()} */}
+        {this.renderMainApp()}
         {/* <CalendarCmp /> */}
-        <RequestWeekDialog/>
+        {/* <RequestWeekDialog/> */}
       </div>
 
     );
