@@ -8,7 +8,7 @@ const Options = require("../models/Options")
 const User = require("../models/User")
 const SubmittedShifts = require("../models/SubmittedShifts")
 const UserShiftRequest = require("../models/UserShiftRequest")
-
+const WeekRequest = require("../models/WeekRequest")
 
 class dataDao {
 
@@ -125,8 +125,20 @@ class dataDao {
             return db_user
     }
 
-    async saveWeekRequest(weekRequestObj) {
-        console.log("continue here.")
+    async saveWeekRequest(argWeekRequestObj) {
+        console.log(argWeekRequestObj)
+        let weekRequestObjToSave = new WeekRequest({
+            dateId : new Date(),
+            dateFrom : argWeekRequestObj.dateFrom,
+            dateTo : argWeekRequestObj.dateTo,
+            numOfShiftsRequested: argWeekRequestObj.numOfShiftsRequested,
+            arrOptions : argWeekRequestObj.arrOptions
+        })
+
+        console.log("requested week saved ")
+        console.log(weekRequestObjToSave)
+
+        weekRequestObjToSave.save()
     }
 
     async saveRoaster(argSubmittedShifts) {

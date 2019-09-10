@@ -20,8 +20,6 @@ import AddUser from './components/add-user/AddUser';
 @observer
 class App extends Component {
 
-  // Fab - floating action button
-
   renderRoutes = () => {
     return (
       <div>
@@ -75,8 +73,6 @@ class App extends Component {
           :
           this.renderMainApp()} */}
         {this.renderMainApp()}
-        {/* <CalendarCmp /> */}
-        {/* <RequestWeekDialog/> */}
       </div>
 
     );

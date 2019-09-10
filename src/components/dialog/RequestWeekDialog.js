@@ -19,7 +19,7 @@ class RequestWeekDialog extends Component {
 
     handleClose = () => this.props.dialogStore.setOpenWeekRequest(false)
 
-    requestOptions = () => this.props.dialogStore.requestWeek(false)
+    requestOptions = () => this.props.dialogStore.submitRequestWeek(false)
 
     formatDate = (date) => {
         console.log(date)

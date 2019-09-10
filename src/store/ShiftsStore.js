@@ -5,8 +5,7 @@ export class ShiftsStore {
     constructor() {
         this.copiedDay = ""
         this.numOfWantedShifts = 0
-        this.arrOptions = []
-        this.optionsDate = {}
+        // this.arrOptions = []
         this.weekRequestObj = {
             arrOptions : [],
             dateFrom : Date,
@@ -15,7 +14,7 @@ export class ShiftsStore {
     }
 
     @observable copiedDay
-    @observable arrOptions
+    // @observable arrOptions
     @observable numOfWantedShifts
     @observable weekRequestObj
 

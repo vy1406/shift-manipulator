@@ -9,7 +9,8 @@ export class DialogStore {
     @observable weekRequestObj = {
         dateFrom: Date,
         dateTo: null,
-        numOfShiftsRequested: 7
+        numOfShiftsRequested: 7,
+        arrOptions: []
     }
 
 
@@ -29,10 +30,11 @@ export class DialogStore {
         this.weekRequestObj.dateTo = someDate
     }
 
-    
-    @action requestWeek = async () => {
+
+    @action submitRequestWeek = async () => {
         this.disableSubmitButton(true)
         this.msg = "Saving the request. Please wait."
+        this.weekRequestObj.arrOptions = this.createOptions()
         let params = this.weekRequestObj
         axios.post("http://localhost:8080/weekrequest", params)
             .then(() => {
@@ -42,6 +44,30 @@ export class DialogStore {
                 console.log(err)
                 this.msg = "Some error. Contact Vova."
             })
+    }
+
+    // creating custom-dummy arrOptions :
+    //  return arrOptions = [
+    //     {
+    //         "Morning": true,
+    //         "Evening": true,
+    //         "Night": true
+    //     },
+    // ...]
+    // making custom, in future version should be customized by admin. 
+
+    createOptions = () => {
+        let arrOptions = []
+        let temp = {}
+        for (let i = 0; i < 7; i++) {
+            temp = {
+                "Morning": true,
+                "Evening": true,
+                "Night": true
+            }
+            arrOptions.push(temp)
+        }
+        return arrOptions
     }
 
     disableSubmitButton = flag => this.isDisabled = flag

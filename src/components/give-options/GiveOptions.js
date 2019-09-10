@@ -4,7 +4,6 @@ import Shift from '../shift/Shift';
 import axios from 'axios';
 
 import Slider from '@material-ui/core/Slider';
-import CustomFab from '../shared/CustomFab';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -93,8 +92,9 @@ class GiveOptions extends Component {
     }
 
     render() {
+        
         let options = this.props.shiftsStore.weekRequestObj.arrOptions
-        console.log(options)
+
         return (
             <div className="container">
                 <div className="row">
