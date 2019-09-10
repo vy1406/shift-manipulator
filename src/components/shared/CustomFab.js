@@ -7,7 +7,7 @@ import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
 import SaveIcon from '@material-ui/icons/Save';
-import PrintIcon from '@material-ui/icons/Print';
+import SupervisedUserCircle from '@material-ui/icons/SupervisedUserCircle';
 import CalendarToday from '@material-ui/icons/CalendarToday';
 import ShareIcon from '@material-ui/icons/Share';
 import { Link } from 'react-router-dom'
@@ -23,13 +23,6 @@ const styles = theme => ({
     },
 });
 
-// const actions = [
-//     { icon: <FileCopyIcon />, name: 'Copy' },
-//     { icon: <SaveIcon onClick={() => console.log(this.props)} />, name: 'Send Week Request' },
-//     { icon: <Link to="/calendar"><CalendarToday /></Link>, name: 'Calendar' },
-//     { icon: <ShareIcon onClick={event => console.log("share")} />, name: 'Share' },
-// ];
-
 @inject("dialogStore")
 @observer
 class CustomFab extends Component {
@@ -39,7 +32,7 @@ class CustomFab extends Component {
             open: false,
             hidden: false,
             actions: [
-                { icon: <FileCopyIcon />, name: 'Copy' },
+                { icon: <Link to="/adduser"><SupervisedUserCircle /></Link>, name: 'Add User' },
                 { icon: <SaveIcon onClick={() => this.props.dialogStore.setOpenWeekRequest(true)} />, name: 'Send Week Request' },
                 { icon: <Link to="/calendar"><CalendarToday /></Link>, name: 'Calendar' },
                 { icon: <ShareIcon onClick={event => console.log("share")} />, name: 'Share' },
@@ -47,25 +40,18 @@ class CustomFab extends Component {
         }
     }
 
-    setOpen = (value) => {
-        this.setState({
-            open: value
-        })
-    }
+    // to fix the bug of clicking the actual link instead of a button. 
+    // put it in the array and use map(button, index) => ... to get the handles[index] the right function
+    // https://stackoverflow.com/questions/55553033/how-to-handle-speed-dial-actions-using-material-ui
+    f = () => this.props.dialogStore.setOpenWeekRequest(true)
 
-    handleClick = () => {
-        this.setOpen(!this.state.open);
-    };
+    setOpen = (open) => this.setState({ open })
 
-    handleOpen = () => {
-        if (!this.state.hidden) {
-            this.setOpen(true);
-        }
-    };
+    handleClick = () => this.setOpen(!this.state.open);
 
-    handleClose = () => {
-        this.setOpen(false);
-    };
+    handleOpen = () => !this.state.hidden ? this.setOpen(true) : null
+
+    handleClose = () => this.setOpen(false);
 
     render() {
         const { classes } = this.props;

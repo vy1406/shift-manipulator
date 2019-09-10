@@ -6,6 +6,10 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import MomentUtils from '@date-io/moment';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import { KeyboardDatePicker } from "@material-ui/pickers";
+import { Container, DatePicker } from "react-materialize";
 
 @inject("dialogStore")
 @observer
@@ -17,24 +21,68 @@ class RequestWeekDialog extends Component {
 
     requestOptions = () => this.props.dialogStore.requestWeek(false)
 
+    formatDate = (date) => {
+        console.log(date)
+        if (date != null) {
+            const monthNames = [
+                "Jan", "Feb", "Mar",
+                "Apl", "May", "Jun", "Jul",
+                "Aug", "Sep", "Oct",
+                "Nov", "Dec"
+            ];
+            const weekNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+            let day = date.getDate()
+            let weekIndex = date.getDay()
+            let monthIndex = date.getMonth()
+            let year = date.getYear() + 1900
+
+            let result = monthNames[monthIndex] + ' ' + day + ', ' + year;
+            // console.log(result)
+            return result
+        }
+
+    }
+
+    renderDialogContent = () => {
+
+        return (
+            <DialogContentText>
+                {/* <MuiPickersUtilsProvider utils={MomentUtils}>
+                    <KeyboardDatePicker
+                        clearable
+                        value={this.props.dialogStore.weekRequestObj.dateFrom}
+                        placeholder="10/10/2018"
+                        onChange={this.props.dialogStore.handleDateFrom}
+                        minDate={new Date()}
+                        format="DD/MM/YY"
+                    />
+                </MuiPickersUtilsProvider> */}
+                <p>
+                    <label>From</label>
+                    <DatePicker
+                        onChange={(target) => this.props.dialogStore.handleDateFrom(target)}
+                    />
+                </p>
+                <p> <label>To </label>
+                    <div>
+                        {this.formatDate(this.props.dialogStore.weekRequestObj.dateTo)}
+                    </div>
+                </p>
+            </DialogContentText>
+        )
+    }
+
     render() {
+
         return (
             <div>
-                <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
-                    Open form dialog
-                </Button>
                 <Dialog fullWidth={true} open={this.props.dialogStore.isOpenWeekRequest} onClose={this.handleClose} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">Request Week Options</DialogTitle>
                     <DialogContent>
-                        <DialogContentText>
-                            {this.props.dialogStore.msg === "" ?
-                                <p>
-                                    Send an email to everybody to submit options
-                                    last sent is.. TODO: show what was the last options sent. ( show dates )
-                                </p>
-                                :
-                                this.props.dialogStore.msg}
-                        </DialogContentText>
+                        {this.props.dialogStore.msg === "" ?
+                            this.renderDialogContent()
+                            :
+                            this.props.dialogStore.msg}
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.handleClose} color="primary">

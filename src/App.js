@@ -13,6 +13,7 @@ import GiveOptions from './components/give-options/GiveOptions';
 import WorkSchedule from './components/work-schedule/WorkSchedule';
 import BuildWeek from './components/build-week/BuildWeek';
 import CalendarCmp from './components/calendar/CalendarCmp';
+import AddUser from './components/add-user/AddUser';
 
 
 @inject("generalStore")
@@ -25,10 +26,11 @@ class App extends Component {
     return (
       <div>
         <Route exact path="/logout" render={() => <LoginForm />} />
-        <Route exact path="/giveoptions" render={() => <GiveOptions />} />
-        <Route exact path="/" render={() => <WorkSchedule />} />
-        <Route exact path="/build" render={() => <BuildWeek />} />
-        <Route exact path="/calendar" render={() => <CalendarCmp />} />
+        <Route exact path="/giveoptions" component={GiveOptions} />
+        <Route exact path="/" component={WorkSchedule} />
+        <Route exact path="/build" component={BuildWeek} />
+        <Route exact path="/calendar" component={CalendarCmp} />
+        <Route exact path="/adduser" component={AddUser}/>
       </div>
     )
   }
