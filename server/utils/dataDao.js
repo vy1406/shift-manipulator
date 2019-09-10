@@ -84,8 +84,9 @@ class dataDao {
     }
 
     async getLastWeekRequest() {
-        const weekRequest = lastWeekRequest
-        return weekRequest
+        // const weekRequest = lastWeekRequest // dummy, before DB
+        const result = await WeekRequest.find()
+        return result[0]
     }
 
     async getShiftRequests() {

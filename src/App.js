@@ -74,7 +74,6 @@ class App extends Component {
           this.renderMainApp()} */}
         {this.renderMainApp()}
       </div>
-
     );
   }
 }
