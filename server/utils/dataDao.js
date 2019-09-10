@@ -86,6 +86,14 @@ class dataDao {
     async getLastWeekRequest() {
         // const weekRequest = lastWeekRequest // dummy, before DB
         const result = await WeekRequest.find()
+        // get latest.
+        // WeekRequest.findOne({}, {}, { sort: { 'dateId': -1 } }, function (err, weekRequest) {
+        //     console.log(weekRequest);
+        // });
+
+        const latest = await WeekRequest.findOne().sort({ dateId: -1 }).limit(1)
+        console.log(latest)
+
         return result[0]
     }
 
@@ -129,11 +137,11 @@ class dataDao {
     async saveWeekRequest(argWeekRequestObj) {
         console.log(argWeekRequestObj)
         let weekRequestObjToSave = new WeekRequest({
-            dateId : new Date(),
-            dateFrom : argWeekRequestObj.dateFrom,
-            dateTo : argWeekRequestObj.dateTo,
+            dateId: new Date(),
+            dateFrom: argWeekRequestObj.dateFrom,
+            dateTo: argWeekRequestObj.dateTo,
             numOfShiftsRequested: argWeekRequestObj.numOfShiftsRequested,
-            arrOptions : argWeekRequestObj.arrOptions
+            arrOptions: argWeekRequestObj.arrOptions
         })
 
         console.log("requested week saved ")
@@ -164,7 +172,7 @@ class dataDao {
         return result
     }
 
-    
+
 }
 
 module.exports = dataDao
