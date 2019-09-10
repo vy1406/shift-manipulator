@@ -6,34 +6,42 @@ export class ShiftsStore {
         this.copiedDay = ""
         this.numOfWantedShifts = 0
         this.arrOptions = []
+        this.optionsDate = {}
+        this.weekRequestObj = {
+            arrOptions : [],
+            dateFrom : Date,
+            dateTo : Date
+        }
     }
 
     @observable copiedDay
     @observable arrOptions
     @observable numOfWantedShifts
+    @observable weekRequestObj
+
 
     @action copyDay = (argDayNumber) => {
-        this.copiedDay = this.arrOptions[argDayNumber]
+        this.copiedDay = this.weekRequestObj.arrOptions[argDayNumber]
     }
 
     @action onChangeSingleOption = (value, argSingleOption, i, dayNum) => {
-        this.arrOptions[dayNum][argSingleOption] = value
+        this.weekRequestObj.arrOptions[dayNum][argSingleOption] = value
     }
 
     @action makeDayOff = (argDayNum) => {
-        this.arrOptions[argDayNum].Morning = false
-        this.arrOptions[argDayNum].Evening = false
-        this.arrOptions[argDayNum].Night = false
+        this.weekRequestObj.arrOptions[argDayNum].Morning = false
+        this.weekRequestObj.arrOptions[argDayNum].Evening = false
+        this.weekRequestObj.arrOptions[argDayNum].Night = false
     }
 
     @action pasteDay = (argDayNumber) => {
 
-        let tempArr = [...this.arrOptions]
+        let tempArr = [...this.weekRequestObj.arrOptions]
         tempArr[argDayNumber].Morning = this.copiedDay.Morning
         tempArr[argDayNumber].Evening = this.copiedDay.Evening
         tempArr[argDayNumber].Night = this.copiedDay.Night
 
-        this.arrOptions = [...tempArr]
+        this.weekRequestObj.arrOptions = [...tempArr]
     }
 
 }

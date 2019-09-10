@@ -38,8 +38,13 @@ router.get('/shiftrequests', async function (req, res) {
 })
 
 router.get('/weekrequest', async function (req, res) {
-    let options = await dataDao.getLastWeekRequest()
-    res.send(options)
+    let result = await dataDao.getLastWeekRequest()
+    res.send(result)
+})
+router.post('/weekrequest', async function (req,res) {
+    let weekRequestObj = req.body
+    await dataDao.saveWeekRequest(weekRequestObj)
+    res.send()
 })
 router.get('/submitshifts', async function (req, res) {
     let options = await dataDao.getLastSubmittedShifts()

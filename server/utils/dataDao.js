@@ -125,6 +125,10 @@ class dataDao {
             return db_user
     }
 
+    async saveWeekRequest(weekRequestObj) {
+        console.log("continue here.")
+    }
+
     async saveRoaster(argSubmittedShifts) {
         let submittedShiftsToSave = new SubmittedShifts({
             shifts: argSubmittedShifts.shifts,

@@ -1,43 +1,42 @@
-[
-    {
-        "Morning": true, 
-        "Evening": true,
-        "Night": true
-    }, 
-
-    {
-        "Morning": true,
-        "Evening": true,
-        "Night": true
-    }, 
-
-    {
-        "Morning": true,
-        "Evening": true,
-        "Night": true
-    }, 
-
-    {
-        "Morning": true,
-        "Evening": true,
-        "Night": true
-    }, 
-
-    {
-        "Morning": true,
-        "Evening": true,
-        "Night": true
-    }, 
-
-    {
-        "Morning": true,
-        "Evening": true,
-        "Night": true
-    },
-    
-    {
-        "Morning": true,
-        "Evening": true,
-        "Night": true
-    }
-]
+{
+    "dateId" : "",
+    "dateFrom" : "",
+    "dateTo"   :"",
+    "arrOptions" : [
+        {
+            "Morning": true,
+            "Evening": true,
+            "Night": true
+        },
+        {
+            "Morning": true,
+            "Evening": true,
+            "Night": true
+        },
+        {
+            "Morning": true,
+            "Evening": true,
+            "Night": true
+        },
+        {
+            "Morning": true,
+            "Evening": true,
+            "Night": true
+        },
+        {
+            "Morning": true,
+            "Evening": true,
+            "Night": true
+        },
+        {
+            "Morning": true,
+            "Evening": true,
+            "Night": true
+        },
+        {
+            "Morning": true,
+            "Evening": true,
+            "Night": true
+        }
+    ]
+}

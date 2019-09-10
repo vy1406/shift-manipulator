@@ -8,7 +8,8 @@ export class DialogStore {
     @observable isDisabled = false
     @observable weekRequestObj = {
         dateFrom: Date,
-        dateTo: null
+        dateTo: null,
+        numOfShiftsRequested: 7
     }
 
 
@@ -28,15 +29,20 @@ export class DialogStore {
         this.weekRequestObj.dateTo = someDate
     }
 
-
+    
     @action requestWeek = async () => {
-        console.log("sending.")
-        this.isDisabled = true
+        this.disableSubmitButton(true)
         this.msg = "Saving the request. Please wait."
-        setTimeout(() => {
-            this.msg = "Request sent."
-        }, 3000);
-        // let params = this.user
-        // await axios.post("http://localhost:8080/user", params)
+        let params = this.weekRequestObj
+        axios.post("http://localhost:8080/weekrequest", params)
+            .then(() => {
+                this.msg = "Request sent."
+            })
+            .catch((err) => {
+                console.log(err)
+                this.msg = "Some error. Contact Vova."
+            })
     }
+
+    disableSubmitButton = flag => this.isDisabled = flag
 }

@@ -14,7 +14,7 @@ class GiveOptions extends Component {
 
     async componentWillMount() {
         const result = await axios.get("http://localhost:8080/weekrequest")
-        this.props.shiftsStore.arrOptions = result.data
+        this.props.shiftsStore.weekRequestObj.arrOptions = result.data.arrOptions
     }
 
     registerNumOfWantedShifts = (event, value) => {
@@ -24,7 +24,7 @@ class GiveOptions extends Component {
     submitShifts = async () => {
         let params =
         {
-            arrOptions: this.props.shiftsStore.arrOptions,
+            arrOptions: this.props.shiftsStore.weekRequestObj.arrOptions,
             numOfWantedShifts: this.props.shiftsStore.numOfWantedShifts,
             user: this.props.generalStore.loggedUser.user
         }
@@ -93,12 +93,12 @@ class GiveOptions extends Component {
     }
 
     render() {
-        let arrOptions = this.props.shiftsStore.arrOptions
-
+        let options = this.props.shiftsStore.weekRequestObj.arrOptions
+        console.log(options)
         return (
             <div className="container">
                 <div className="row">
-                    {arrOptions.map((option, i) => <Shift key={i} day={i} option={option} />)}
+                    {options.map((option, i) => <Shift key={i} day={i} option={option} />)}
                 </div>
                 <div className="row">
                     {this.renderControls()}

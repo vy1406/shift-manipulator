@@ -15,7 +15,7 @@ class Shift extends Component {
     }
 
     renderSingleOption = (argSingleOption, i) => {
-        let checkBoxValue = this.props.shiftsStore.arrOptions[this.props.day][argSingleOption]
+        let checkBoxValue = this.props.shiftsStore.weekRequestObj.arrOptions[this.props.day][argSingleOption]
 
         return (
             <div className="row" key={argSingleOption + i}>
@@ -47,7 +47,7 @@ class Shift extends Component {
     }
 
     makeDayOff = () => {
-        console.log(this.props.shiftsStore.arrOptions[this.props.day])
+        console.log(this.props.shiftsStore.weekRequestObj.arrOptions[this.props.day])
         this.props.shiftsStore.makeDayOff(this.props.day)
     }
 
@@ -57,7 +57,7 @@ class Shift extends Component {
 
     pasteDay = () => {
         this.props.shiftsStore.pasteDay(this.props.day)
-        console.log(this.props.shiftsStore.arrOptions)
+        console.log(this.props.shiftsStore.weekRequestObj.arrOptions)
     }
 
 
