@@ -50,7 +50,8 @@ router.post('/weekrequest', async function (req,res) {
 })
 
 router.post('/emailnotify', async function (req,res) {
-    emailService.sendNotifications(req.body)
+    emailService.sendNotifications(req.body.emails, req.body.adminEmail, req.body.dates)
+
     // await dataDao.test()
     res.send()
 })

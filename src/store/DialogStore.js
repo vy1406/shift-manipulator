@@ -39,7 +39,7 @@ export class DialogStore {
         // this.disableSubmitButton(true)
         // this.msg = "Saving the request. Please wait."
         // this.weekRequestObj.arrOptions = this.createOptions()
-        // let params = this.weekRequestObj
+        let params = this.weekRequestObj
         // axios.post("http://localhost:8080/weekrequest", params)
         //     .then(() => {
         //         this.msg = "Request sent."
@@ -48,15 +48,25 @@ export class DialogStore {
         //         console.log(err)
         //         this.msg = "Some error. Contact Vova."
         //     })
-        let emails = this.arrUsersWithKeys.filter( u => { return { email : u.email}})
-        axios.post("http://localhost:8080/emailnotify", emails)
-            .then(() => 
+        
+        let emails = this.arrUsersWithKeys.map(u => u.email )
+        let adminEmail = this.getAdminEmail()
+        let dates = {
+            dateFrom: this.weekRequestObj.dateFrom,
+            dateTo: this.weekRequestObj.dateTo
+        }
+        params = { emails, adminEmail, dates }
+        axios.post("http://localhost:8080/emailnotify", params)
+            .then(() =>
                 this.msg = "sent emails.")
             .catch((err) => {
                 console.log(err)
             })
     }
 
+    getAdminEmail = () => {
+        return "velisave@admin.com"
+    }
     // creating custom-dummy arrOptions :
     //  return arrOptions = [
     //     {
