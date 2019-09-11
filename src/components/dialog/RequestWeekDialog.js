@@ -10,6 +10,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 // import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 // import { KeyboardDatePicker } from "@material-ui/pickers";
 import { Container, DatePicker } from "react-materialize";
+import UsersChips from '../shared/UsersChips'
 
 @inject("dialogStore")
 @observer
@@ -68,6 +69,8 @@ class RequestWeekDialog extends Component {
                         {this.formatDate(this.props.dialogStore.weekRequestObj.dateTo)}
                     </div>
                 </p>
+                <label>Send Email notificatio to: </label>
+                <UsersChips />
             </DialogContentText>
         )
     }

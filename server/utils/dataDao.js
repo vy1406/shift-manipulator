@@ -13,6 +13,7 @@ const WeekRequest = require("../models/WeekRequest")
 class dataDao {
 
     async clearDB() {
+
         Worker.collection.drop()
         Options.collection.drop()
         User.collection.drop()
@@ -22,6 +23,7 @@ class dataDao {
     }
 
     async populate() {
+
         for (let i = 0; i < workers.length; i++)
             await this.saveWorkerToDB(workers[i])
 
@@ -45,15 +47,6 @@ class dataDao {
         })
 
         workerToSave.save()
-    }
-
-    async getLastOptions() {
-        // ToDo
-        // ---------------------------------
-        // sort by date, return the last one.
-        // ---------------------------------
-        let result = options
-        return result
     }
 
     // for population ( testing )
@@ -84,20 +77,13 @@ class dataDao {
     }
 
     async getLastWeekRequest() {
-        // const weekRequest = lastWeekRequest // dummy, before DB
-        const result = await WeekRequest.find()
-        // get latest.
-        // WeekRequest.findOne({}, {}, { sort: { 'dateId': -1 } }, function (err, weekRequest) {
-        //     console.log(weekRequest);
-        // });
 
         const latest = await WeekRequest.findOne().sort({ dateId: -1 }).limit(1)
-        console.log(latest)
-
-        return result[0]
+        return latest
     }
 
     async getShiftRequests() {
+
         let result = await UserShiftRequest.find()
         return result
     }
@@ -123,6 +109,7 @@ class dataDao {
     }
 
     async login(bodyParams) {
+
         const { user, password } = bodyParams
         let db_user = await User.find({ user })
 
@@ -135,7 +122,7 @@ class dataDao {
     }
 
     async saveWeekRequest(argWeekRequestObj) {
-        console.log(argWeekRequestObj)
+
         let weekRequestObjToSave = new WeekRequest({
             dateId: new Date(),
             dateFrom: argWeekRequestObj.dateFrom,
@@ -151,6 +138,7 @@ class dataDao {
     }
 
     async saveRoaster(argSubmittedShifts) {
+
         let submittedShiftsToSave = new SubmittedShifts({
             shifts: argSubmittedShifts.shifts,
             date: argSubmittedShifts.date
@@ -163,11 +151,13 @@ class dataDao {
     }
 
     async getLastSubmittedShifts() {
+
         let result = await SubmittedShifts.find()
         return result
     }
 
     async getWorkSchedule() {
+
         let result = await SubmittedShifts.find()
         return result
     }
