@@ -6,6 +6,7 @@ export class DialogStore {
     @observable msg = ""
     @observable isOpenWeekRequest = false
     @observable isDisabled = false
+    @observable arrUsersWithKeys = [] // for chips component.
     @observable weekRequestObj = {
         dateFrom: Date,
         dateTo: null,
@@ -13,6 +14,9 @@ export class DialogStore {
         arrOptions: []
     }
 
+    @action sendEmailNotification = async () => {
+
+    }
 
     @action setOpenWeekRequest = (isOpen) => this.isOpenWeekRequest = isOpen
 
@@ -32,17 +36,24 @@ export class DialogStore {
 
 
     @action submitRequestWeek = async () => {
-        this.disableSubmitButton(true)
-        this.msg = "Saving the request. Please wait."
-        this.weekRequestObj.arrOptions = this.createOptions()
-        let params = this.weekRequestObj
-        axios.post("http://localhost:8080/weekrequest", params)
-            .then(() => {
-                this.msg = "Request sent."
-            })
+        // this.disableSubmitButton(true)
+        // this.msg = "Saving the request. Please wait."
+        // this.weekRequestObj.arrOptions = this.createOptions()
+        // let params = this.weekRequestObj
+        // axios.post("http://localhost:8080/weekrequest", params)
+        //     .then(() => {
+        //         this.msg = "Request sent."
+        //     })
+        //     .catch((err) => {
+        //         console.log(err)
+        //         this.msg = "Some error. Contact Vova."
+        //     })
+        let emails = this.arrUsersWithKeys.filter( u => { return { email : u.email}})
+        axios.post("http://localhost:8080/emailnotify", emails)
+            .then(() => 
+                this.msg = "sent emails.")
             .catch((err) => {
                 console.log(err)
-                this.msg = "Some error. Contact Vova."
             })
     }
 

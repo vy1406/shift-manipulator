@@ -162,7 +162,15 @@ class dataDao {
         return result
     }
 
+    async test() {
+        User.findByIdAndUpdate('5d6e9689bc53263ebce3d3b5',
+            { email: 'smtp.mailtrap.io' },
+            function (err, user) {
+                if (err) throw err;
 
+                console.log(user);
+            });
+    }
 }
 
 module.exports = dataDao

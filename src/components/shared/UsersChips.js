@@ -3,8 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import Chip from '@material-ui/core/Chip';
 import Paper from '@material-ui/core/Paper';
-import TagFacesIcon from '@material-ui/icons/TagFaces';
-
+import { observer, inject } from 'mobx-react';
 
 const styles = theme => ({
     root: {
@@ -16,41 +15,32 @@ const styles = theme => ({
     chip: {
         margin: theme.spacing(0.5),
     },
-  });
+});
 
+@inject("dialogStore")
+@observer
 class UsersChips extends Component {
-    constructor(){
-        super()
-        this.state = {
-            arrUsersWithKeys : []
-        }
-    }
 
-    async componentDidMount(){
+    async componentDidMount() {
         const response_users = await axios.get("http://localhost:8080/users")
-        const arrUsersWithKeys = response_users.data.map((u, index) => { return { key:index, label: u.user,  } })
-        this.setState({
-            arrUsersWithKeys
-        })
+        this.props.dialogStore.arrUsersWithKeys = response_users.data.map((u, index) => { return { key: index, label: u.user, email: u.email} })
     }
 
     handleDelete = chipToDelete => () => {
-        let filteredChips = this.state.arrUsersWithKeys.filter(chip => chip.key !== chipToDelete.key)
-        this.setState({
-            arrUsersWithKeys : filteredChips
-        })
+        let filteredChips = this.props.dialogStore.arrUsersWithKeys.filter(chip => chip.key !== chipToDelete.key)
+        this.props.dialogStore.arrUsersWithKeys = filteredChips
     };
 
     render() {
         const { classes } = this.props;
         return (
             <Paper className={classes.root}>
-                {this.state.arrUsersWithKeys.map(data => {
+                {this.props.dialogStore.arrUsersWithKeys.map(data => {
                     let icon;
 
-                    if (data.label === 'React') {
-                        icon = <TagFacesIcon />;
-                    }
+                    // if (data.label === 'React') {
+                    //     icon = <TagFacesIcon />;
+                    // }
 
                     return (
                         <Chip
@@ -67,4 +57,4 @@ class UsersChips extends Component {
     }
 }
 
-export default withStyles(styles)(UsersChips )
+export default withStyles(styles)(UsersChips)

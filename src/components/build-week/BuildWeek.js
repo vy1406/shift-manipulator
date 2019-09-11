@@ -4,8 +4,6 @@ import axios from 'axios';
 import Loader from '../shared/Loader';
 import SimpleBarChart from '../charts/SimpleBarChart';
 import { observer, inject } from 'mobx-react'
-// ---------------------------
-// ---------------------------
 
 @inject("buildShiftStore")
 @observer

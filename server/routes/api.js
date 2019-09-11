@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const DataDao = require("../utils/dataDao")
+const EmailService = require("../utils/EmailService")
 const dataDao = new DataDao()
+const emailService = new EmailService()
 
 router.get('/sanity', function (req, res) {
     res.send("OK!")
@@ -46,6 +48,13 @@ router.post('/weekrequest', async function (req,res) {
     await dataDao.saveWeekRequest(weekRequestObj)
     res.send()
 })
+
+router.post('/emailnotify', async function (req,res) {
+    emailService.sendNotifications(req.body)
+    // await dataDao.test()
+    res.send()
+})
+
 router.get('/submitshifts', async function (req, res) {
     let options = await dataDao.getLastSubmittedShifts()
     res.send(options)
