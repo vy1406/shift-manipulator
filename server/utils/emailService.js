@@ -1,4 +1,6 @@
 const nodemailer = require('nodemailer');
+const dotenv = require('dotenv');
+dotenv.config();
 
 class EmailService {
 
@@ -8,8 +10,8 @@ class EmailService {
             host: 'smtp.mailtrap.io',
             port: 2525,
             auth: {
-               user: '1b8cb9b2c2a255',
-               pass: 'e3eb115502bc04'
+               user: process.env.USER,
+               pass: process.env.PASS
             }
         });
 
@@ -18,7 +20,7 @@ class EmailService {
         let message = {
             from: adminEmail, // Sender address
             to: emails,         // List of recipients
-            subject: 'Design Your Model S | Tesla', // Subject line
+            subject: 'Options Request', // Subject line
             html: htmlText
         };
 
@@ -32,11 +34,11 @@ class EmailService {
     }
 
     createHtmlText(dates) {
-        
+
         let dateFrom = new Date(dates.dateFrom)
         let dateTo = new Date(dates.dateTo)
         let header = '<h1>Hey guys!</h1>' 
-        let textDates = '<p>From ' + this.formatDate(dateFrom) + ' To ' + this.formatDate(dateTo) + '</p>'
+        let textDates = '<p>Options for a week From <b>' + this.formatDate(dateFrom) + '</b> To <b>' + this.formatDate(dateTo) + '</b></p>'
         let innerText = '<p>Just reminding you to send your week options</p>'
         let ps = 'P.S. You can bribe me with dark chocolate to get some good shifts.'
         let result = header + textDates + innerText + ps

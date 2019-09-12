@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const api = require('./server/routes/api')
 
 const mongoose = require('mongoose')
+
 mongoose.connect(process.env.CONNECTION_STRING || 'mongodb://localhost/shifts', { useNewUrlParser: true })
 
 const app = express()
