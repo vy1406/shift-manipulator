@@ -123,22 +123,48 @@ class dataDao {
         //         console.log("Error : ", err)
         // });
 
-        bcrypt.compare("12344", db_user[0].password, function (err, res) {
-            if (res) {
-                console.log("match")
-            } else {
-                // Passwords don't match
-                console.log("dont match")
-            }
-        });
+        // bcrypt.compare("12344", db_user[0].password, function (err, res) {
+        //     if (res) {
+        //         console.log("match")
+        //     } else {
+        //         // Passwords don't match
+        //         console.log("dont match")
+        //     }
+        // });
 
         // console.log(result)
-        if (db_user.length === 0)
-            return "Worker with given email doenst exist."
-        else if (db_user[0].password !== password)
-            return "Wrong password!"
-        else
-            return db_user
+
+        let response = {
+            user: null,
+            error: null,
+            isUserFound : null,
+            isWrongPassword: null
+        }
+
+        if (db_user.length === 0){
+            response.error = "Worker with given email doenst exist."
+            response.isUserFound = false
+        }
+
+        else {
+            if (await bcrypt.compare(password, db_user[0].password)) {
+                response.user = {
+                    email: db_user[0].email,
+                    user: db_user[0].user,
+                    isAdmin: db_user[0].isAdmin,
+                    name: db_user[0].name,
+                    lastName: db_user[0].lastName
+                }
+            }
+            else {
+                response.error = "Wrong password!"
+                response.isUserFound = true
+                response.isWrongPassword = true
+            }
+
+        }
+
+        return response
     }
 
     async saveWeekRequest(argWeekRequestObj) {

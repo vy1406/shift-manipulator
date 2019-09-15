@@ -12,7 +12,7 @@
         "name": "Eitan",
         "lastName": "Eeloz",
         "email": "Eitan@yahoo.com",
-        "password" : "1234",
+        "password" : "$2b$10$A9emqx6As1F2pgdQxUBYgOXo6czSawJh869ufjdwrD8EAO6A1NgN.",
         "isAdmin": false
     },
     {
@@ -20,7 +20,7 @@
         "name": "Dima",
         "lastName": "Osipov",
         "email": "Dima@yahoo.com",
-        "password" : "1234",
+        "password" : "$2b$10$A9emqx6As1F2pgdQxUBYgOXo6czSawJh869ufjdwrD8EAO6A1NgN.",
         "isAdmin": false
     },
     {
@@ -28,7 +28,7 @@
         "name": "Roman",
         "lastName": "Shargaev",
         "email": "Roman@yahoo.com",
-        "password" : "1234",
+        "password" : "$2b$10$A9emqx6As1F2pgdQxUBYgOXo6czSawJh869ufjdwrD8EAO6A1NgN.",
         "isAdmin": false
     },
     {
@@ -36,7 +36,7 @@
         "name": "Semyon",
         "lastName": "Simakov",
         "email": "Semyon@yahoo.com",
-        "password" : "1234",
+        "password" : "$2b$10$A9emqx6As1F2pgdQxUBYgOXo6czSawJh869ufjdwrD8EAO6A1NgN.",
         "isAdmin": false
     }
 ]

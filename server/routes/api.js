@@ -64,9 +64,8 @@ router.get('/submitshifts', async function (req, res) {
 })
 
 router.post('/login', async function (req, res) {
-    let user = await dataDao.login(req.body)
-
-    res.send(user)
+    let response = await dataDao.login(req.body)
+    res.send(response)
 })
 
 router.post('/submitshifts', async function (req, res) {
