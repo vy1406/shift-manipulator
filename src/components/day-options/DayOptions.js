@@ -14,7 +14,7 @@ class DayOptions extends Component {
             }),
             // control: () => ({
             //     // none of react-select's styles are passed to <Control />
-                
+
             // }),
             singleValue: (provided, state) => {
                 const opacity = state.isDisabled ? 0.5 : 1;
@@ -25,13 +25,15 @@ class DayOptions extends Component {
         }
         return (
             <div className="row" key={argSingleOption + i}>
-                <div className="col s6 m6 l6"><span className="shift">{argSingleOption}</span></div>
+                <div className="col s6 m6 l6">
+                    <span className="shift">{argSingleOption}</span>
+                </div>
                 <div className="col s6 m6 l6">
                     <Select id={"dropdown-" + this.props.day}
                         options={this.createDropDownUserList(argSingleOption)}
                         defaultValue={{ label: "Select...", value: 0 }}
                         styles={customStyles}
-                        onChange={value => this.props.buildShiftStore.chooseUser(value.value, argSingleOption,this.props.dayIndex)}>
+                        onChange={value => this.props.buildShiftStore.chooseUser(value.value, argSingleOption, this.props.dayIndex)}>
                     </Select>
                 </div>
             </div>

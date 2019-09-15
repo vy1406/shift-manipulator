@@ -4,7 +4,7 @@
         "name": "Vova",
         "lastName": "Elisavetski",
         "email": "Vova@yahoo.com",
-        "password" : "1234",
+        "password" : "$2b$10$A9emqx6As1F2pgdQxUBYgOXo6czSawJh869ufjdwrD8EAO6A1NgN.",
         "isAdmin": true
     },
     {

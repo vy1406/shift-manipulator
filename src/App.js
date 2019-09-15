@@ -28,7 +28,7 @@ class App extends Component {
         <Route exact path="/" component={WorkSchedule} />
         <Route exact path="/build" component={BuildWeek} />
         <Route exact path="/calendar" component={CalendarCmp} />
-        <Route exact path="/adduser" component={AddUser}/>
+        <Route exact path="/adduser" component={AddUser} />
       </div>
     )
   }
@@ -72,7 +72,8 @@ class App extends Component {
           <LoginForm />
           :
           this.renderMainApp()} */}
-        {this.renderMainApp()}
+        {/* {this.renderMainApp()} */}
+        <LoginForm />
       </div>
     );
   }

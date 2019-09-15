@@ -2,7 +2,9 @@ const workers = require('./workers.json')
 const options = require('./options.json')
 const users = require('./users.json')
 const lastWeekRequest = require('./weekrequest.json')
+const bcrypt = require('bcrypt');
 
+let saltRaunds = 10
 const Worker = require("../models/Worker")
 const Options = require("../models/Options")
 const User = require("../models/User")
@@ -113,6 +115,24 @@ class dataDao {
         const { user, password } = bodyParams
         let db_user = await User.find({ user })
 
+        // console.log(db_user[0])
+        // bcrypt.hash(db_user[0].password, saltRaunds, function (err, hash) {
+        //     if (!err)
+        //         console.log(hash)
+        //     else
+        //         console.log("Error : ", err)
+        // });
+
+        bcrypt.compare("12344", db_user[0].password, function (err, res) {
+            if (res) {
+                console.log("match")
+            } else {
+                // Passwords don't match
+                console.log("dont match")
+            }
+        });
+
+        // console.log(result)
         if (db_user.length === 0)
             return "Worker with given email doenst exist."
         else if (db_user[0].password !== password)

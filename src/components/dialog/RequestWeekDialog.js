@@ -23,7 +23,6 @@ class RequestWeekDialog extends Component {
     requestOptions = () => this.props.dialogStore.submitRequestWeek(false)
 
     formatDate = (date) => {
-        console.log(date)
         if (date != null) {
             const monthNames = [
                 "Jan", "Feb", "Mar",
@@ -38,7 +37,6 @@ class RequestWeekDialog extends Component {
             let year = date.getYear() + 1900
 
             let result = monthNames[monthIndex] + ' ' + day + ', ' + year;
-            // console.log(result)
             return result
         }
 

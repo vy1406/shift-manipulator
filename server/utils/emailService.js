@@ -14,7 +14,7 @@ class EmailService {
                pass: process.env.PASS
             }
         });
-
+        console.log("ADD PROCESS env variables to heroku")
         let htmlText = this.createHtmlText(dates)
 
         let message = {

@@ -2,9 +2,11 @@ const express = require('express')
 const router = express.Router()
 const DataDao = require("../utils/dataDao")
 const EmailService = require("../utils/EmailService")
+const LoginService = require("../utils/LoginService")
+
 const dataDao = new DataDao()
 const emailService = new EmailService()
-
+const loginService = new LoginService()
 router.get('/sanity', function (req, res) {
     res.send("OK!")
 })
@@ -43,13 +45,13 @@ router.get('/weekrequest', async function (req, res) {
     let result = await dataDao.getLastWeekRequest()
     res.send(result)
 })
-router.post('/weekrequest', async function (req,res) {
+router.post('/weekrequest', async function (req, res) {
     let weekRequestObj = req.body
     await dataDao.saveWeekRequest(weekRequestObj)
     res.send()
 })
 
-router.post('/emailnotify', async function (req,res) {
+router.post('/emailnotify', async function (req, res) {
     emailService.sendNotifications(req.body.emails, req.body.adminEmail, req.body.dates)
 
     // await dataDao.test()
@@ -63,7 +65,7 @@ router.get('/submitshifts', async function (req, res) {
 
 router.post('/login', async function (req, res) {
     let user = await dataDao.login(req.body)
-    console.log(user)
+
     res.send(user)
 })
 
@@ -89,7 +91,7 @@ router.post('/submitroster', async function (req, res) {
     res.send()
 })
 
-router.get('/workschedule', async function(req,res) {
+router.get('/workschedule', async function (req, res) {
     let result = await dataDao.getWorkSchedule()
     res.send(result)
 })
