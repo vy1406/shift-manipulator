@@ -95,4 +95,9 @@ router.get('/workschedule', async function (req, res) {
     res.send(result)
 })
 
+router.get('/rosters', async function(req,res) {
+    let result = await dataDao.getAllRosters()
+    res.send(result)
+})
+
 module.exports = router

@@ -10,6 +10,9 @@ export class BuildShiftStore {
         this.isReady = false // for loader
         this.usersShiftObserver = {}
         this.isSubmitShiftFull = false
+
+        this.calendarEvents = []
+        this.eventId = 0 // counter for calendar events 
     }
 
     @observable submittedShifts
@@ -18,6 +21,8 @@ export class BuildShiftStore {
     @observable isReady
     @observable usersShiftObserver
     @observable isSubmitShiftFull
+
+    @observable calendarEvents
 
     @action initBuildStore = (length, arrUsers, arrShifts) => {
 
@@ -131,4 +136,70 @@ export class BuildShiftStore {
             }
         }
     }
+
+    @action getLoggedUserRosters = async (user) => {
+        let data = await axios.get("http://localhost:8080/rosters")
+        this.calendarEvents = this.fillCalendarEventsWithRosters(data.data)
+    }
+
+    @action getAllRostersOfAllUsers = async () => {
+        let data = await axios.get("http://localhost:8080/rosters")
+        this.calendarEvents = this.fillCalendarEventsWithRosters(data.data)
+    }
+
+    fillCalendarEventsWithRosters(rosters) {
+        let calendarEvents = []
+        for (let i = 0; i < rosters.length; i++) { // iterating rosters.
+            for (let j = 0; j < rosters[i].shifts.length; j++) { // iterating shifts
+                let currentDayRoster = rosters[i].shifts[j]
+                let rosterDayDate = rosters[i].date
+                let dayIndex = j
+                let arrEvents = this.createEventsBySingleDayRoster(currentDayRoster, rosterDayDate, dayIndex)
+                calendarEvents.push(...arrEvents)
+            }
+        }
+
+        return calendarEvents
+    }
+
+    createEventsBySingleDayRoster(argDayRoster, argRosterDayDate, argDateIndex) {
+        let result = []
+        let curEvent = {}
+        let startDate, endDate, eventId
+        // console.log(newDate)
+        let listOfOptions = Object.keys(argDayRoster)
+        for (let i = 0; i < listOfOptions.length; i++) {
+            let curOption = listOfOptions[i]
+            startDate = this.setEventStartByShiftType(curOption, argRosterDayDate, argDateIndex)
+            endDate = new Date(startDate)
+            endDate.setTime(startDate.getTime() + (8 * 60 * 60 * 1000))
+            eventId = this.eventId
+            this.eventId++
+            curEvent = {
+                id: eventId,
+                title: argDayRoster[curOption],
+                start: startDate,
+                end: endDate,
+            }
+            result.push(curEvent)
+        }
+
+        return result
+    }
+
+    setEventStartByShiftType(optionType, argRosterDayDate, argDateIndex) {
+        let date = new Date(argRosterDayDate)
+        let curNewDate = new Date()
+        curNewDate.setDate(date.getDate() + argDateIndex)
+
+        if (optionType === "Morning")
+            curNewDate.setHours(7, 0, 0)
+        if (optionType === "Evening")
+            curNewDate.setHours(15, 0, 0)
+        if (optionType === "Night")
+            curNewDate.setHours(23, 0, 0)
+
+        return curNewDate
+    }
+
 }

@@ -115,39 +115,13 @@ class dataDao {
         const { user, password } = bodyParams
         let db_user = await User.find({ user })
 
-        // console.log(db_user[0])
-        // bcrypt.hash(db_user[0].password, saltRaunds, function (err, hash) {
-        //     if (!err)
-        //         console.log(hash)
-        //     else
-        //         console.log("Error : ", err)
-        // });
+        let response = { user: null, error: null, isUserFound: null, isWrongPassword: null }
 
-        // bcrypt.compare("12344", db_user[0].password, function (err, res) {
-        //     if (res) {
-        //         console.log("match")
-        //     } else {
-        //         // Passwords don't match
-        //         console.log("dont match")
-        //     }
-        // });
-
-        // console.log(result)
-
-        let response = {
-            user: null,
-            error: null,
-            isUserFound : null,
-            isWrongPassword: null
-        }
-
-        if (db_user.length === 0){
+        if (db_user.length === 0) { // user wasnt found
             response.error = "Worker with given email doenst exist."
             response.isUserFound = false
-        }
-
-        else {
-            if (await bcrypt.compare(password, db_user[0].password)) {
+        } else {     // user found 
+            if (await bcrypt.compare(password, db_user[0].password)) { // password match
                 response.user = {
                     email: db_user[0].email,
                     user: db_user[0].user,
@@ -155,15 +129,14 @@ class dataDao {
                     name: db_user[0].name,
                     lastName: db_user[0].lastName
                 }
+                response.isUserFound = true
             }
-            else {
+            else { // wrong password
                 response.error = "Wrong password!"
                 response.isUserFound = true
                 response.isWrongPassword = true
             }
-
         }
-
         return response
     }
 
@@ -204,6 +177,11 @@ class dataDao {
 
     async getWorkSchedule() {
 
+        let result = await SubmittedShifts.find()
+        return result
+    }
+
+    async getAllRosters() {
         let result = await SubmittedShifts.find()
         return result
     }

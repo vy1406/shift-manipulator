@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import '../login/LoginForm.css'
 import { observer, inject } from 'mobx-react'
-import axios from 'axios';
-import M from "materialize-css";
+
 
 @inject("generalStore")
 @observer
@@ -19,7 +18,7 @@ class LoginForm extends Component {
         }
 
         this.props.generalStore.logout()
-        
+
         return (
             <div class="row">
                 <div className="col s12 m4 offset-m4">
@@ -31,6 +30,7 @@ class LoginForm extends Component {
                             <div className="form-field">
                                 <label for="username">Username</label>
                                 <input type="text" id="username"
+
                                     onChange={event => this.props.generalStore.userinput = event.target.value}>
                                 </input>
                             </div>

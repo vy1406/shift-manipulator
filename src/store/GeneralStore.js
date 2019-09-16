@@ -32,16 +32,14 @@ export class GeneralStore {
         let data = await axios.post("http://localhost:8080/login", params)
 
         console.log(data.data)
-        // if (data.data.isUserFound) {
-        //     if (data.data.isWrongPassword)
-        //         console.log(data.data.error)
-        //     else
-        //         console.log(data.data.user)
-        // }
-        // else
-        //     console.log(console.log(data.data.error))
-
-        this.loggedUser = data.data[0]
+        if (data.data.isUserFound) {
+            if (data.data.isWrongPassword)
+                console.log(data.data.error)
+            else
+                this.loggedUser = data.data[0]
+        }
+        else
+            console.log(data.data.error)
     }
 
     @action logout = () => {

@@ -72,8 +72,8 @@ class App extends Component {
           <LoginForm />
           :
           this.renderMainApp()} */}
-        {/* {this.renderMainApp()} */}
-        <LoginForm />
+        {this.renderMainApp()}
+        {/* <LoginForm /> */}
       </div>
     );
   }
