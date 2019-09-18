@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
+import { observer, inject } from 'mobx-react'
 
+@inject("generalStore")
+@observer
 class SingleDaySchedule extends Component {
+
 
     getDayOfWeek = () => {
         let weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
         return weekDays[this.props.day]
     }
 
-    renderSingleWorker = (argSingleOption, i) => {
+    classNameByUser = (argSingleOption) => {
+        let result = "col s6 m6 l6"
+        result += this.props.schedule[argSingleOption] === this.props.generalStore.loggedUser.user ? " cyan-text lighten-3" : null
+        return result
+    }
 
+    renderSingleWorker = (argSingleOption, i) => {
         return (
             <div className="row" key={argSingleOption + i}>
                 <div className="col s6 m6 l6"><span className="shift">{argSingleOption}</span></div>
-                <div className="col s6 m6 l6">{this.props.schedule[argSingleOption]}</div>
+                <div className={this.classNameByUser(argSingleOption)}>{this.props.schedule[argSingleOption]}</div>
             </div>
         )
     }

@@ -7,9 +7,8 @@ import { observer, inject } from 'mobx-react'
 @observer
 class LoginForm extends Component {
 
-    login = () => {
-        this.props.generalStore.login()
-    }
+    login = () =>  this.props.generalStore.login()
+    
 
     render() {
 

@@ -137,7 +137,7 @@ export class BuildShiftStore {
         }
     }
 
-    @action getLoggedUserRosters = async (user) => {
+    @action getAllRosters = async () => {
         let data = await axios.get("http://localhost:8080/rosters")
         this.calendarEvents = this.fillCalendarEventsWithRosters(data.data)
     }

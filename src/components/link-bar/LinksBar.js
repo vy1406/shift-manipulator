@@ -7,11 +7,9 @@ import '../link-bar/LinkBar.css'
 @observer
 class LinksBar extends Component {
 
-
     renderAdminLinks = () => {
 
         return (
-
             <ul className="tabs tabs-transparent  teal lighten-1" >
                 <li className="tab col s3"><Link to="/">Roster</Link></li>
                 <li className="tab col s3"><Link to="/giveoptions">Give Options</Link></li>
