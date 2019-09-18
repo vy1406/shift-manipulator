@@ -10,21 +10,8 @@ export class GeneralStore {
     @observable selectOptions
     @observable loggedUser = ""
 
-    // add user
-    // user = { user, name, lastName, email, password }
-    @observable user = {}
-
     @action handleInput = (key, event) => {
         this[key] = event.target.value
-    }
-
-    @action handleAddUserInput = (key, value) => {
-        this.user[key] = value
-    }
-
-    @action addUser = async () => {
-        let params = this.user
-        await axios.post("http://localhost:8080/user", params)
     }
 
     @action login = async () => {

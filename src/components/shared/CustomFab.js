@@ -32,8 +32,8 @@ class CustomFab extends Component {
             open: false,
             hidden: false,
             actions: [
-                { icon: <Link to="/adduser"><SupervisedUserCircle /></Link>, name: 'Add User' },
                 { icon: <SaveIcon onClick={() => this.props.dialogStore.setOpenWeekRequest(true)} />, name: 'Send Week Request' },
+                { icon: <SupervisedUserCircle onClick={() => this.props.dialogStore.setOpenAddUser(true)} />, name: 'Add new user' },
                 { icon: <Link to="/calendar"><CalendarToday /></Link>, name: 'Calendar' },
                 { icon: <ShareIcon onClick={event => console.log("share")} />, name: 'Share' },
             ]

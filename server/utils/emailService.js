@@ -4,6 +4,36 @@ dotenv.config();
 
 class EmailService {
 
+    // email notofication for registering a new user.
+    sendNewUserNotification(user, adminEmail){
+        let transport = nodemailer.createTransport({
+            host: 'smtp.mailtrap.io',
+            port: 2525,
+            auth: {
+               user: process.env.USER,
+               pass: process.env.PASS
+            }
+        });
+        console.log("ADD PROCESS env variables to heroku")
+        let htmlText = this.createNewUserText(user)
+
+        let message = {
+            from: adminEmail, // Sender address
+            to: [user.email],         // new users email
+            subject: 'New User', // Subject line
+            html: htmlText
+        };
+
+        transport.sendMail(message, function(err, info) {
+            if (err) {
+              console.log(err)
+            } else {
+              console.log(info);
+            }
+        });
+    }
+
+    // send a request notification for all users for a new options for the next week
     sendNotifications(emails, adminEmail, dates) {
 
         let transport = nodemailer.createTransport({
@@ -31,6 +61,12 @@ class EmailService {
               console.log(info);
             }
         });
+    }
+
+    createNewUserText(user) {
+        let header = '<h1>Welcome, ' + user.name + '!</h1>' 
+        let innerText = '<p>You are now part of our awesome team! Please change your password at fist login.</p>'
+        return header + innerText
     }
 
     createHtmlText(dates) {

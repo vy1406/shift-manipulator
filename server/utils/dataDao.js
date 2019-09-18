@@ -66,15 +66,19 @@ class dataDao {
 
     async saveUserToDB(argUser) {
 
+        let hashedPassword = await bcrypt.hash('1234',saltRaunds)
+
         let userToSave = new User({
             name: argUser.name,
             email: argUser.email,
             user: argUser.user,
-            password: argUser.password,
+            password: hashedPassword,
             lastName: argUser.lastName,
             isAdmin: argUser.isAdmin
         })
 
+        console.log("user saved : ")
+        console.log(userToSave)
         userToSave.save()
     }
 

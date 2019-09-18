@@ -27,7 +27,10 @@ router.get('/options', async function (req, res) {
 })
 
 router.post('/user', async function (req, res) {
-    await dataDao.saveUserToDB(req.body)
+    
+    // emailService.sendNewUserNotification(req.body.user, req.body.adminEmail) // the working one
+    emailService.sendNewUserNotification(req.body.user, "velisave@admin.com") // for testing, without each time loggin in
+    await dataDao.saveUserToDB(req.body.user)
     res.send()
 })
 

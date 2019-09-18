@@ -14,6 +14,7 @@ import WorkSchedule from './components/work-schedule/WorkSchedule';
 import BuildWeek from './components/build-week/BuildWeek';
 import CalendarCmp from './components/calendar/CalendarCmp';
 import AddUser from './components/add-user/AddUser';
+import AddUserDialog from './components/dialog/AddUserDialog';
 
 
 @inject("generalStore")
@@ -37,6 +38,7 @@ class App extends Component {
     return (
       <div>
         <RequestWeekDialog />
+        <AddUserDialog />
       </div>
     )
   }

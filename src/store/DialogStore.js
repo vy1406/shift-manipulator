@@ -14,6 +14,15 @@ export class DialogStore {
         arrOptions: []
     }
 
+       
+    @observable isOpenAddUser = false
+    @observable user = {
+        isAdmin : false
+    }
+    
+    // ----------------------------
+    // Request week dialog store
+    // ----------------------------
     @action sendEmailNotification = async () => {
 
     }
@@ -92,4 +101,34 @@ export class DialogStore {
     }
 
     disableSubmitButton = flag => this.isDisabled = flag
+
+
+    // ----------------------------
+    // Add user dialog store
+    // ---------------------------- 
+
+    @action handleAddUserInput = (key, value) => {
+        this.user[key] = value
+    }
+
+    @action addUser = async (adminEmail) => {
+        this.isDisabled = true
+        let params = {
+            user : this.user,
+            adminEmail
+        }
+        axios.post("http://localhost:8080/user", params)
+        .then(() =>
+        this.msg = "Email sent to the new user.")
+    }
+
+    @action onChangeIsAdmin = () => this.user.isAdmin = !this.user.isAdmin
+
+    @action setOpenAddUser = (isOpen) => this.isOpenAddUser = isOpen
+    
+    @action closeOpenUser = () => {
+        this.setOpenAddUser(false)
+        this.msg = ""
+        this.isDisabled = false
+    }
 }
